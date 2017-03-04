@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 16:50:55 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/03/04 17:00:36 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/03/04 18:17:14 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static	void		ft_print_addr(unsigned long long n)
 	len = ft_nbrlen(n) - 1;
 	if (n == 0)
 	{
-		ft_putstr("                 ");
+		ft_putstr("                ");
 		return ;
 		str[len] = '0';
 	}
@@ -76,7 +76,7 @@ static	void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
 	}
 }
 
-static	void		add_list(t_lt **lt, unsigned long long value, char *str)
+static	void		add_list(t_lt **lt, unsigned long long value, char *str, uint8_t type)
 {
 	t_lt *new;
 	t_lt *tmp;
@@ -84,6 +84,7 @@ static	void		add_list(t_lt **lt, unsigned long long value, char *str)
 	tmp = *lt;
 	new = (t_lt*)malloc(sizeof(t_lt));
 	new->value = value;
+	new->type = type;
 	new->str = strdup(str);
 	new->next = NULL;
 	if (!*lt)
@@ -104,10 +105,18 @@ void				print_output(struct symtab_command *sym, void *ptr)
 	array = (void*)ptr + sym->symoff;
 	i = -1;
 	while (++i < (int)sym->nsyms)
-		add_list(&lt, array[i].n_value, stringtable + array[i].n_un.n_strx);
+		add_list(&lt, array[i].n_value, stringtable + array[i].n_un.n_strx, array[i].n_type);
 	while (lt)
 	{
 		ft_print_addr(lt->value);
+		if (lt->type == N_TYPE)
+			ft_putstr(" t ");
+		else if (lt->type == N_EXT)
+			ft_putstr(" U ");
+		else
+			ft_putstr(" T ");
+
+		//printf("\n type -> %d\n", lt->type);
 		ft_putendl(lt->str);
 		lt = lt->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 16:25:24 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/03/04 17:02:50 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/03/04 18:02:11 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct			s_lt
 {
 	unsigned long long	value;
 	char				*str;
+	uint8_t				type;
 	struct s_lt			*next;
 }						t_lt;
 

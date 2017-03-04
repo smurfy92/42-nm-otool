@@ -115,8 +115,6 @@ void				print_output(struct symtab_command *sym, void *ptr)
 			ft_putstr(" U ");
 		else
 			ft_putstr(" T ");
-
-		//printf("\n type -> %d\n", lt->type);
 		ft_putendl(lt->str);
 		lt = lt->next;
 	}

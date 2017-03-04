@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 15:32:41 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/03/04 16:56:41 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/03/04 18:21:00 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ void		handle_64(void *ptr)
 
 void		print_usage(char **argv)
 {
-	fprintf(stderr, "usage : %s [file]\n", argv[0]);
+	ft_putstr_fd("usage : ", 2);
+	ft_putstr_fd(argv[0], 2);
+	ft_putendl_fd(" [file]", 2);
 }
 
 void		nm(void *ptr)

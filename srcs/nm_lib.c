@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 16:50:55 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/03/06 15:14:39 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/07/31 12:09:25 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static size_t		ft_nbrlen(unsigned long long n)
 	return (i);
 }
 
-static	void		ft_print_addr(unsigned long long n)
+void		ft_print_addr(unsigned long long n)
 {
 	char				str[ft_nbrlen(n)];
 	size_t				len;
@@ -115,6 +115,7 @@ void				print_output(struct symtab_command *sym, void *ptr)
 			ft_putstr(" U ");
 		else
 			ft_putstr(" T ");
+		
 		ft_putendl(lt->str);
 		lt = lt->next;
 	}

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nmotool.h                                          :+:      :+:    :+:   */
+/*   otool.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/04 16:25:24 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/07/31 11:32:36 by jtranchi         ###   ########.fr       */
+/*   Created: 2017/07/31 14:16:17 by jtranchi          #+#    #+#             */
+/*   Updated: 2017/07/31 14:17:33 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NMOTOOL_H
-# define NMOTOOL_H
+#ifndef OTOOL_H
+# define OTOOL_H
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
@@ -30,7 +30,7 @@ typedef struct			s_lt
 	struct s_lt			*next;
 }						t_lt;
 
-void					print_output(struct symtab_command *sym, void *ptr);
 void					ft_print_addr(unsigned long long n);
+void					print_output(struct segment_command *sym, void *ptr);
 
 #endif

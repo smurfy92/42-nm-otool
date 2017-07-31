@@ -6,11 +6,11 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 15:33:26 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/03/06 15:16:01 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/07/31 14:17:43 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/nmotool.h"
+#include "../includes/otool.h"
 
 void		handle_64(void *ptr)
 {
@@ -18,19 +18,24 @@ void		handle_64(void *ptr)
 	int						i;
 	struct mach_header_64	*header;
 	struct load_command		*lc;
-	struct symtab_command	*sym;
+	struct segment_command	*sym;
 
 	i = -1;
 	header = (struct mach_header_64*)ptr;
+	
 	nb = header->ncmds;
 	lc = (void*)ptr + sizeof(*header);
 	while (++i < nb)
 	{
-		if (lc->cmd == LC_SYMTAB)
+		if (lc->cmd == LC_SEGMENT_64)
 		{
-			sym = (struct symtab_command*)lc;
-			print_output(sym, ptr);
-			break ;
+			sym = (struct segment_command*)lc;
+			if (ft_strcmp(sym->segname, "__TEXT") == 0) {
+				print_output(sym, ptr);
+			}
+			
+
+			//break ;
 		}
 		lc = (void*)lc + lc->cmdsize;
 	}

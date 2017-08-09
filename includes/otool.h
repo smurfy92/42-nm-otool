@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/31 14:16:17 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/07/31 14:17:33 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/08/09 15:35:23 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ typedef struct			s_lt
 }						t_lt;
 
 void					ft_print_addr(unsigned long long n);
-void					print_output(struct segment_command *sym, void *ptr);
+void					print_output(struct segment_command_64 *seg, struct mach_header_64 *header);
 
 #endif

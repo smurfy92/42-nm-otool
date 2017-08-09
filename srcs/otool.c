@@ -6,38 +6,29 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 15:33:26 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/07/31 14:17:43 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/08/09 15:34:43 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/otool.h"
 
-void		handle_64(void *ptr)
+void		handle_64(struct mach_header_64 *header)
 {
 	int						nb;
 	int						i;
-	struct mach_header_64	*header;
-	struct load_command		*lc;
-	struct segment_command	*sym;
+	struct segment_command_64	*segment;
 
 	i = -1;
-	header = (struct mach_header_64*)ptr;
 	
 	nb = header->ncmds;
-	lc = (void*)ptr + sizeof(*header);
+	segment = (struct segment_command_64 *)(header + 1);
 	while (++i < nb)
 	{
-		if (lc->cmd == LC_SEGMENT_64)
-		{
-			sym = (struct segment_command*)lc;
-			if (ft_strcmp(sym->segname, "__TEXT") == 0) {
-				print_output(sym, ptr);
-			}
-			
-
-			//break ;
+		if (ft_strcmp(segment->segname, "__TEXT") == 0) {
+			print_output(segment, header);
+			break;
 		}
-		lc = (void*)lc + lc->cmdsize;
+		segment = (struct segment_command_64 *)((char *)segment + segment->cmdsize);
 	}
 }
 
@@ -55,7 +46,7 @@ void		otool(void *ptr)
 
 	magic = *(int *)ptr;
 	if (magic == (int)MH_MAGIC_64)
-		handle_64(ptr);
+		handle_64((struct mach_header_64 *)ptr);
 }
 
 void		myerror(char *str)

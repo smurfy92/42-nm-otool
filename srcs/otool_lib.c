@@ -6,11 +6,33 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/31 14:09:02 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/07/31 15:35:41 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/08/09 16:02:27 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/otool.h"
+
+void	print_byte_to_hex(char byte)
+{
+	char			str[2];
+	short			count;
+	short			char_hex;
+	unsigned char	cast;
+
+	cast = (unsigned char)byte;
+	count = -1;
+	while (++count != 2)
+	{
+		char_hex = cast % 16;
+		cast /= 16;
+		if (char_hex < 10)
+			str[count] = char_hex + '0';
+		else
+			str[count] = (char_hex % 10) + 'a';
+	}
+	ft_putchar(str[1]);
+	ft_putchar(str[0]);
+}
 
 static size_t		ft_nbrlen(unsigned long long n)
 {
@@ -47,88 +69,38 @@ void		ft_print_addr(unsigned long long n)
 		n /= 16;
 		len--;
 	}
-	ft_putstr("0000000");
+	ft_putstr("0000000100000");
 	ft_putstr(str);
 }
 
-// static	void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
-// {
-// 	if (ft_strcmp(tmp->str, new->str) > 0)
-// 	{
-// 		new->next = tmp;
-// 		*lt = new;
-// 		return ;
-// 	}
-// 	while (tmp)
-// 	{
-// 		if (!tmp->next)
-// 		{
-// 			tmp->next = new;
-// 			break ;
-// 		}
-// 		if (ft_strcmp(tmp->next->str, new->str) > 0)
-// 		{
-// 			new->next = tmp->next;
-// 			tmp->next = new;
-// 			break ;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// }
-
-// static	void		add_list(t_lt **lt, unsigned long long value, char *str, uint8_t type)
-// {
-// 	t_lt *new;
-// 	t_lt *tmp;
-
-// 	tmp = *lt;
-// 	new = (t_lt*)malloc(sizeof(t_lt));
-// 	new->value = value;
-// 	new->type = type;
-// 	new->str = strdup(str);
-// 	new->next = NULL;
-// 	if (!*lt)
-// 		*lt = new;
-// 	else
-// 		add_list_next(lt, tmp, new);
-// }
-
-void				print_output(struct segment_command *sym, void *ptr)
+void				print_output(struct segment_command_64 *seg, struct mach_header_64 *header)
 {
-	//int					i;
-	//char				*stringtable;
-	//struct nlist_64		*array;
-	//t_lt				*lt;
 	struct section_64 *section;
 	size_t offset = 0;
+	size_t count = 0;
 
-	ptr = (void*)ptr;
+	header = (void *)header;
 
-	section = (struct section_64 *)(sym + 1);
-	printf("\n%llu\n", section->size);
-	while (section->offset + offset != section->offset + section->size){
-		ft_print_addr(section->offset + offset);
-		ft_putstr("\n");
-		offset += 16;
+	section = (struct section_64 *)(seg + 1);
+	while (count < seg->nsects) {
+		if (ft_strcmp(section->sectname, SECT_TEXT) == 0) {
+			printf("%s", section->sectname);
+			break;
+		}
+		section += 1;
+		count ++;
 	}
-
-	// lt = NULL;
-	// stringtable = (void*)ptr + sym->stroff;
-	// array = (void*)ptr + sym->symoff;
-	// i = -1;
-	// while (++i < (int)sym->nsyms)
-	// 	add_list(&lt, array[i].n_value, stringtable + array[i].n_un.n_strx, array[i].n_type);
-	// while (lt)
-	// {
-	// 	ft_print_addr(lt->value);
-	// 	if (lt->type == N_TYPE)
-	// 		ft_putstr(" t ");
-	// 	else if (lt->type == N_EXT)
-	// 		ft_putstr(" U ");
-	// 	else
-	// 		ft_putstr(" T ");
-		
-	// 	ft_putendl(lt->str);
-	// 	lt = lt->next;
-	// }
+	char *start = (char *)header + section->offset;
+	char *end = start + section->size;
+	while (start + offset < end){
+		ft_print_addr(section->offset + offset);
+		ft_putchar(' ');
+		count = -1;
+		while (++count < 16) {
+			print_byte_to_hex(*(start + offset));
+			ft_putchar(' ');
+			offset++;
+		}
+		ft_putstr("\n");
+	}
 }

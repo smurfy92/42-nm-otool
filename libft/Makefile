@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: julio <julio@student.42.fr>                +#+  +:+       +#+         #
+#    By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/28 18:42:36 by jtranchi          #+#    #+#              #
-#    Updated: 2016/11/08 16:55:23 by julio            ###   ########.fr        #
+#    Updated: 2017/08/09 16:59:44 by jtranchi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ $(LIB): start $(OBJ)
 nohd: $(OBJ)
 	@echo "\033[K$(CY)[LIBFT] :$(CE) $(CG)Creating Library$(CE)\033[1A";
 	@$(AR) $(LIB) $(OBJ)
-	@echo "\033[K$(CY)[LIBFT] :$(CE) $(CG)Indexing Library$(CE)\033[1A";
+	@echo "\033[K$(CY)[LIBFT] :$(CE) $(CG)Indexing Library$(CE)";
 	@$(AR) $(LIB) $(OBJ)
 	@$(RANLIB) $(LIB)
 

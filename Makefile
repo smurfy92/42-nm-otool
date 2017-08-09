@@ -36,12 +36,12 @@ start:
 
 clean: start
 	@echo "\033[K$(CY)[MALLOC] :$(CE) $(CG)Cleaning Malloc objects$(CE)\033[1A";
-	-@make -C srcs/libft nohdclean;
+	-@make -C libft nohdclean;
 	@/bin/rm -rf $(OBJ);
 
 fclean: start clean
 	@echo "\033[K$(CY)[MALLOC] :$(CE) $(CG)Cleaning 42sh ...$(CE)\033[1A";
-	-@make -C srcs/libft nohdfclean;
+	-@make -C libft nohdfclean;
 	@/bin/rm -f ft_nm ft_otool;
 
 re: fclean all

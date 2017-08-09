@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/31 14:09:02 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/08/09 16:02:27 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/08/09 16:52:31 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,33 +73,27 @@ void		ft_print_addr(unsigned long long n)
 	ft_putstr(str);
 }
 
-void				print_output(struct segment_command_64 *seg, struct mach_header_64 *header)
+void				print_output(struct segment_command_64 *seg,
+struct mach_header_64 *header)
 {
-	struct section_64 *section;
-	size_t offset = 0;
-	size_t count = 0;
-
-	header = (void *)header;
+	struct section_64	*section;
+	size_t				offset = 0;
+	size_t				count = 0;
 
 	section = (struct section_64 *)(seg + 1);
 	while (count < seg->nsects) {
-		if (ft_strcmp(section->sectname, SECT_TEXT) == 0) {
-			printf("%s", section->sectname);
+		if (ft_strcmp(section->sectname, SECT_TEXT) == 0)
 			break;
-		}
 		section += 1;
 		count ++;
 	}
-	char *start = (char *)header + section->offset;
-	char *end = start + section->size;
-	while (start + offset < end){
+	while ((char *)header + section->offset + offset < 
+		(char *)header + section->offset + section->size){
 		ft_print_addr(section->offset + offset);
-		ft_putchar(' ');
 		count = -1;
 		while (++count < 16) {
-			print_byte_to_hex(*(start + offset));
 			ft_putchar(' ');
-			offset++;
+			print_byte_to_hex(*((char *)header + section->offset + offset++));
 		}
 		ft_putstr("\n");
 	}

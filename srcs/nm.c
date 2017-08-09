@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 15:32:41 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/08/09 11:28:31 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/08/09 16:55:41 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void		handle_64(void *ptr)
 	}
 }
 
-void		print_usage(char **argv)
+int		print_usage(char **argv)
 {
 	ft_putstr_fd("usage : ", 2);
 	ft_putstr_fd(argv[0], 2);
 	ft_putendl_fd(" [file]", 2);
-	exit(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }
 
 void		nm(void *ptr)
@@ -53,12 +53,12 @@ void		nm(void *ptr)
 		handle_64(ptr);
 }
 
-void		myerror(char *str)
+int		myerror(char *str)
 {
 	ft_putstr("nm : ");
 	ft_putstr(str);
 	ft_putstr(": error");
-	exit(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }
 
 int			main(int argc, char **argv)
@@ -68,15 +68,16 @@ int			main(int argc, char **argv)
 	struct stat		buf;
 
 	if (argc != 2)
-		print_usage(argv);
+		return (print_usage(argv));
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		myerror("open");
+		return (myerror("open"));
 	if (fstat(fd, &buf) < 0)
-		myerror("fstat");
-	if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
-		myerror("mmap");
+		return (myerror("fstat"));
+	if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) ==
+	MAP_FAILED)
+		return (myerror("mmap"));
 	nm(ptr);
 	if (munmap(ptr, buf.st_size) < 0)
-		myerror("munmap");
+		return (myerror("munmap"));
 	return (EXIT_SUCCESS);
 }

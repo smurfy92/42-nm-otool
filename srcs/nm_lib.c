@@ -85,7 +85,7 @@ static	void		add_list(t_lt **lt, unsigned long long value, char *str, uint8_t ty
 	new = (t_lt*)malloc(sizeof(t_lt));
 	new->value = value;
 	new->type = type;
-	new->str = strdup(str);
+	new->str = ft_strdup(str);
 	new->next = NULL;
 	if (!*lt)
 		*lt = new;

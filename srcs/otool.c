@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 15:33:26 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/08/09 16:56:40 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/08/09 17:01:26 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		handle_64(struct mach_header_64 *header)
 	segment = (struct segment_command_64 *)(header + 1);
 	while (++i < nb)
 	{
-		if (ft_strcmp(segment->segname, "__TEXT") == 0) {
+		if (ft_strcmp(segment->segname, SEG_TEXT) == 0) {
 			print_output(segment, header);
 			break;
 		}

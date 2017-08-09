@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/31 14:09:02 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/08/09 16:52:31 by jtranchi         ###   ########.fr       */
+/*   Updated: 2017/08/09 17:02:52 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ struct mach_header_64 *header)
 		while (++count < 16) {
 			ft_putchar(' ');
 			print_byte_to_hex(*((char *)header + section->offset + offset++));
+			if ((char *)header + section->offset + offset < 
+			(char *)header + section->offset + section->size)
+				break;
 		}
 		ft_putstr("\n");
 	}

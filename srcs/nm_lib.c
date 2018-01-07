@@ -27,7 +27,7 @@ static size_t		ft_nbrlen(unsigned long long n)
 	return (i);
 }
 
-void		ft_print_addr(unsigned long long n)
+void				ft_print_addr(unsigned long long n)
 {
 	char				str[ft_nbrlen(n)];
 	size_t				len;
@@ -76,7 +76,8 @@ static	void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
 	}
 }
 
-static	void		add_list(t_lt **lt, unsigned long long value, char *str, uint8_t type)
+static	void		add_list(t_lt **lt, unsigned long long value,
+char *str, uint8_t type)
 {
 	t_lt *new;
 	t_lt *tmp;
@@ -105,7 +106,8 @@ void				print_output(struct symtab_command *sym, void *ptr)
 	array = (void*)ptr + sym->symoff;
 	i = -1;
 	while (++i < (int)sym->nsyms)
-		add_list(&lt, array[i].n_value, stringtable + array[i].n_un.n_strx, array[i].n_type);
+		add_list(&lt, array[i].n_value, stringtable +
+		array[i].n_un.n_strx, array[i].n_type);
 	while (lt)
 	{
 		ft_print_addr(lt->value);
@@ -115,7 +117,6 @@ void				print_output(struct symtab_command *sym, void *ptr)
 			ft_putstr(" U ");
 		else
 			ft_putstr(" T ");
-		
 		ft_putendl(lt->str);
 		lt = lt->next;
 	}

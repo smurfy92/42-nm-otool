@@ -36,7 +36,7 @@ void		handle_64(void *ptr)
 	}
 }
 
-int		print_usage(char **argv)
+int			print_usage(char **argv)
 {
 	ft_putstr_fd("usage : ", 2);
 	ft_putstr_fd(argv[0], 2);
@@ -53,7 +53,7 @@ void		nm(void *ptr)
 		handle_64(ptr);
 }
 
-int		myerror(char *str)
+int			myerror(char *str)
 {
 	ft_putstr("nm : ");
 	ft_putstr(str);

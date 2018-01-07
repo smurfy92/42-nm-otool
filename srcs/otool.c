@@ -14,25 +14,26 @@
 
 void		handle_64(struct mach_header_64 *header)
 {
-	int						nb;
-	int						i;
+	int							nb;
+	int							i;
 	struct segment_command_64	*segment;
 
 	i = -1;
-	
 	nb = header->ncmds;
 	segment = (struct segment_command_64 *)(header + 1);
 	while (++i < nb)
 	{
-		if (ft_strcmp(segment->segname, SEG_TEXT) == 0) {
+		if (ft_strcmp(segment->segname, SEG_TEXT) == 0)
+		{
 			print_output(segment, header);
-			break;
+			break ;
 		}
-		segment = (struct segment_command_64 *)((char *)segment + segment->cmdsize);
+		segment = (struct segment_command_64 *)((char *)segment +
+		segment->cmdsize);
 	}
 }
 
-int		print_usage(char **argv)
+int			print_usage(char **argv)
 {
 	ft_putstr_fd("usage : ", 2);
 	ft_putstr_fd(argv[0], 2);
@@ -49,7 +50,7 @@ void		otool(void *ptr)
 		handle_64((struct mach_header_64 *)ptr);
 }
 
-int		myerror(char *str)
+int			myerror(char *str)
 {
 	ft_putstr("nm : ");
 	ft_putstr(str);
@@ -69,7 +70,8 @@ int			main(int argc, char **argv)
 		return (myerror("open"));
 	if (fstat(fd, &buf) < 0)
 		return (myerror("fstat"));
-	if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
+	if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) ==
+	MAP_FAILED)
 		return (myerror("mmap"));
 	otool(ptr);
 	if (munmap(ptr, buf.st_size) < 0)

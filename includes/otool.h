@@ -25,5 +25,6 @@
 void					ft_print_addr(unsigned long long n);
 void					print_output(struct segment_command_64 *seg,
 struct mach_header_64 *header);
+void					print_byte_to_hex(char byte);
 
 #endif

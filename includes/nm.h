@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NMOTOOL_H
-# define NMOTOOL_H
+#ifndef NM_H
+# define NM_H
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
@@ -20,6 +20,7 @@
 # include <sys/mman.h>
 # include <mach-o/loader.h>
 # include <mach-o/nlist.h>
+# include <mach-o/stab.h>
 # include "../libft/includes/libft.h"
 
 typedef struct			s_lt
@@ -27,10 +28,14 @@ typedef struct			s_lt
 	unsigned long long	value;
 	char				*str;
 	uint8_t				type;
+	uint8_t				sect;
 	struct s_lt			*next;
 }						t_lt;
 
-void					print_output(struct symtab_command *sym, void *ptr);
-void					ft_print_addr(unsigned long long n);
+void					print_output_64(struct symtab_command *sym, void *ptr);
+void					print_output_32(struct symtab_command *sym, void *ptr);
+void					ft_print_addr(unsigned long long n, int boo);
+int						print_usage(char **argv);
+void					ft_print_letter(t_lt *lt);
 
 #endif

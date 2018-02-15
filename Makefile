@@ -1,6 +1,3 @@
-SRC = srcs/nm.c
-SRC += srcs/nm_lib.c
-SRC += srcs/otool.c
 
 OBJ = $(SRC:.c=.o)
 LIB = libft/libft.a
@@ -14,9 +11,9 @@ INC = -I ./includes/
 all: start
 	@echo "\033[K$(CY)[NM] :$(CE) $(CG)Compiling nm ...$(CE)";
 	-@make -C libft nohd
-	@gcc -o ft_nm srcs/nm.c srcs/nm_lib.c $(FLAG) $(INC)  $(LIB);
+	@gcc -o ft_nm srcs/nm.c srcs/nm_lib.c srcs/nm_lib_2.c $(FLAG) $(INC)  $(LIB);
 	@echo "\033[K$(CY)[OTOOL] :$(CE) $(CG)Compiling otool ...$(CE)";
-	@gcc -o ft_otool srcs/otool_lib.c srcs/otool.c $(FLAG) $(INC) $(LIB);
+	@gcc -o ft_otool srcs/otool_lib.c srcs/otool.c srcs/otool_lib_2.c $(FLAG) $(INC) $(LIB);
 
 
 start:

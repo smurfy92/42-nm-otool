@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/nmotool.h"
+#include "../includes/nm.h"
 
 void		handle_64(void *ptr)
 {
@@ -29,19 +29,35 @@ void		handle_64(void *ptr)
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command*)lc;
-			print_output(sym, ptr);
+			print_output_64(sym, ptr);
 			break ;
 		}
 		lc = (void*)lc + lc->cmdsize;
 	}
 }
 
-int			print_usage(char **argv)
+void		handle_32(void *ptr)
 {
-	ft_putstr_fd("usage : ", 2);
-	ft_putstr_fd(argv[0], 2);
-	ft_putendl_fd(" [file]", 2);
-	return (EXIT_FAILURE);
+	int						nb;
+	int						i;
+	struct mach_header		*header;
+	struct load_command		*lc;
+	struct symtab_command	*sym;
+
+	i = -1;
+	header = (struct mach_header*)ptr;
+	nb = header->ncmds;
+	lc = (void*)ptr + sizeof(*header);
+	while (++i < nb)
+	{
+		if (lc->cmd == LC_SYMTAB)
+		{
+			sym = (struct symtab_command*)lc;
+			print_output_32(sym, ptr);
+			break ;
+		}
+		lc = (void*)lc + lc->cmdsize;
+	}
 }
 
 void		nm(void *ptr)
@@ -51,6 +67,8 @@ void		nm(void *ptr)
 	magic = *(int *)ptr;
 	if (magic == (int)MH_MAGIC_64)
 		handle_64(ptr);
+	if (magic == (int)MH_MAGIC)
+		handle_32(ptr);
 }
 
 int			myerror(char *str)

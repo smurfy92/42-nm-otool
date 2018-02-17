@@ -21,6 +21,7 @@
 # include <mach-o/loader.h>
 # include <mach-o/nlist.h>
 # include <mach-o/stab.h>
+# include <mach-o/fat.h>
 # include "../libft/includes/libft.h"
 
 typedef struct			s_lt

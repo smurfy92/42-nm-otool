@@ -60,6 +60,15 @@ void		handle_32(void *ptr)
 	}
 }
 
+void		ft_find_fat(void *ptr)
+{
+	printf("ici\n");
+	printf("%u\n", ((struct fat_header*)ptr)->nfat_arch);
+	exit(0);
+	handle_32(ptr);
+
+}
+
 void		nm(void *ptr)
 {
 	int magic;
@@ -69,6 +78,10 @@ void		nm(void *ptr)
 		handle_64(ptr);
 	else if (magic == (int)MH_MAGIC)
 		handle_32(ptr);
+	else if (magic == (int)FAT_CIGAM_64)
+		handle_64((void*)ptr + sizeof(struct fat_header_64*));
+	else if (magic == (int)FAT_CIGAM)
+		ft_find_fat(ptr);
 }
 
 void		ft_process(int argc, char *argv)

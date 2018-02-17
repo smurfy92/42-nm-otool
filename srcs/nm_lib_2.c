@@ -12,6 +12,13 @@
 
 #include "../includes/nm.h"
 
+int					myerror(char *str)
+{
+	ft_putstr("./ft_nm: ");
+	ft_putendl(str);
+	return (EXIT_FAILURE);
+}
+
 static size_t		ft_nbrlen(unsigned long long n)
 {
 	size_t i;

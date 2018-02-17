@@ -67,35 +67,44 @@ void		nm(void *ptr)
 	magic = *(int *)ptr;
 	if (magic == (int)MH_MAGIC_64)
 		handle_64(ptr);
-	if (magic == (int)MH_MAGIC)
+	else if (magic == (int)MH_MAGIC)
 		handle_32(ptr);
 }
 
-int			myerror(char *str)
-{
-	ft_putstr("nm : ");
-	ft_putstr(str);
-	ft_putstr(": error");
-	return (EXIT_FAILURE);
-}
-
-int			main(int argc, char **argv)
+void		ft_process(int argc, char *argv)
 {
 	int				fd;
 	char			*ptr;
 	struct stat		buf;
 
-	if (argc != 2)
-		return (print_usage(argv));
-	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		return (myerror("open"));
-	if (fstat(fd, &buf) < 0)
-		return (myerror("fstat"));
-	if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) ==
+	if (argc > 2)
+	{
+		ft_putstr(argv);
+		ft_putendl(":");
+	}
+	if ((fd = open(argv, O_RDONLY)) < 0)
+		myerror("no such file or directory");
+	else if (fstat(fd, &buf) < 0)
+		myerror("Permission denied");
+	else if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) ==
 	MAP_FAILED)
-		return (myerror("mmap"));
-	nm(ptr);
-	if (munmap(ptr, buf.st_size) < 0)
-		return (myerror("munmap"));
+		myerror("mmap");
+	else
+	{
+		nm(ptr);
+		if (munmap(ptr, buf.st_size) < 0)
+			myerror("munmap");
+	}
+}
+
+int			main(int argc, char **argv)
+{
+	int			i;
+
+	i = 0;
+	if (argc < 2)
+		return (print_usage(argv));
+	while (++i < argc)
+		ft_process(argc, argv[i]);
 	return (EXIT_SUCCESS);
 }

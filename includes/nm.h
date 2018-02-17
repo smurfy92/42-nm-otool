@@ -37,5 +37,6 @@ void					print_output_32(struct symtab_command *sym, void *ptr);
 void					ft_print_addr(unsigned long long n, int boo);
 int						print_usage(char **argv);
 void					ft_print_letter(t_lt *lt);
+int						myerror(char *str);
 
 #endif

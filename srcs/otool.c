@@ -65,31 +65,37 @@ void		otool(void *ptr)
 		handle_32((struct mach_header *)ptr);
 }
 
-int			myerror(char *str)
-{
-	ft_putstr("nm : ");
-	ft_putstr(str);
-	ft_putstr(": error");
-	return (EXIT_FAILURE);
-}
-
-int			main(int argc, char **argv)
+void		ft_process(char *argv)
 {
 	int				fd;
 	char			*ptr;
 	struct stat		buf;
 
-	if (argc != 2)
-		return (print_usage(argv));
-	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		return (myerror("open"));
-	if (fstat(fd, &buf) < 0)
-		return (myerror("fstat"));
-	if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) ==
+	if ((fd = open(argv, O_RDONLY)) < 0)
+		myerror(argv, "Permission or file doesnt exists");
+	else if (fstat(fd, &buf) < 0)
+		myerror(argv, "fstat");
+	else if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) ==
 	MAP_FAILED)
-		return (myerror("mmap"));
-	otool(ptr);
-	if (munmap(ptr, buf.st_size) < 0)
-		return (myerror("munmap"));
+		myerror(argv, "mmap");
+	else
+	{
+		ft_putstr(argv);
+		ft_putendl(":");
+		otool(ptr);
+		if (munmap(ptr, buf.st_size) < 0)
+			myerror(argv, "munmap");
+	}
+}
+
+int			main(int argc, char **argv)
+{
+	int			i;
+
+	i = 0;
+	if (argc < 2)
+		return (print_usage(argv));
+	while (++i < argc)
+		ft_process(argv[i]);
 	return (EXIT_SUCCESS);
 }

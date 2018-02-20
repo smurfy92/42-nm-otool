@@ -12,14 +12,6 @@
 
 #include "../includes/otool.h"
 
-int					print_usage(char **argv)
-{
-	ft_putstr_fd("usage : ", 2);
-	ft_putstr_fd(argv[0], 2);
-	ft_putendl_fd(" [file]", 2);
-	return (EXIT_FAILURE);
-}
-
 void				print_byte_to_hex(char byte)
 {
 	char			str[2];
@@ -80,4 +72,21 @@ void				ft_print_addr(unsigned long long n, int boo)
 	}
 	(boo) ? (ft_putstr("0000000100000")) : (ft_putstr("00001"));
 	ft_putstr(str);
+}
+
+int					myerror(char *file, char *str)
+{
+	ft_putstr("./ft_otool: ");
+	ft_putstr(file);
+	ft_putstr(": ");
+	ft_putendl(str);
+	return (EXIT_FAILURE);
+}
+
+int					print_usage(char **argv)
+{
+	ft_putstr_fd("usage : ", 2);
+	ft_putstr_fd(argv[0], 2);
+	ft_putendl_fd(" [file]", 2);
+	return (EXIT_FAILURE);
 }

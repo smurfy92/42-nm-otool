@@ -87,17 +87,17 @@ void		ft_process(int argc, char *argv)
 		ft_putendl(":");
 	}
 	if ((fd = open(argv, O_RDONLY)) < 0)
-		myerror("no such file or directory");
+		myerror(argv, "Permission or file doesnt exists");
 	else if (fstat(fd, &buf) < 0)
-		myerror("Permission denied");
+		myerror(argv, "fstat");
 	else if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) ==
 	MAP_FAILED)
-		myerror("mmap");
+		myerror(argv, "mmap");
 	else
 	{
 		nm(ptr);
 		if (munmap(ptr, buf.st_size) < 0)
-			myerror("munmap");
+			myerror(argv, "munmap");
 	}
 }
 

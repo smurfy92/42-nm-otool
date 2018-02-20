@@ -24,10 +24,11 @@ struct section_64 *section, int boo)
 	{
 		ft_print_addr(section->offset + offset, boo);
 		count = -1;
+		ft_putstr("	");
 		while (++count < 16)
 		{
-			ft_putchar(' ');
 			print_byte_to_hex(*(header + section->offset + offset + count));
+			ft_putchar(' ');
 			if ((char *)header + section->offset + offset + count + 1 >=
 			(char *)header + section->offset + section->size)
 				break ;
@@ -49,10 +50,11 @@ struct section *section, int boo)
 	{
 		ft_print_addr(section->offset + offset, boo);
 		count = -1;
+		ft_putstr("	");
 		while (++count < 16)
 		{
-			ft_putchar(' ');
 			print_byte_to_hex(*(header + section->offset + offset + count));
+			ft_putchar(' ');
 			if ((char *)header + section->offset + offset + count + 1 >=
 			(char *)header + section->offset + section->size)
 				break ;
@@ -76,6 +78,7 @@ struct mach_header_64 *header)
 			break ;
 		section += 1;
 	}
+	ft_putendl("Contents of (__TEXT,__text) section");
 	print_output_64_suite((char *)header, section, 1);
 }
 
@@ -93,5 +96,6 @@ struct mach_header *header)
 			break ;
 		section += 1;
 	}
+	ft_putendl("Contents of (__TEXT,__text) section");
 	print_output_32_suite((char *)header, section, 0);
 }

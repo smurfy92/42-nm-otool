@@ -14,11 +14,6 @@ do
 		cat $element
 		printf "\033[0m\n"
 		cat total
-
-	else
-		printf "\033[92m"
-		cat $element
-		printf "\033[0m\n"
 	fi
 	if [ -s "total2" ]
 	then
@@ -26,10 +21,5 @@ do
 		cat $element
 		printf "\033[0m\n"
 		cat total
-
-	else
-		printf "\033[92m"
-		cat $element
-		printf "\033[0m\n"
 	fi
 done

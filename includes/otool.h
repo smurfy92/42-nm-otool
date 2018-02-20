@@ -29,5 +29,7 @@ void					print_output_32(struct segment_command *seg,
 struct mach_header *header);
 void					print_byte_to_hex(char byte);
 int						print_usage(char **argv);
+int						myerror(char *file, char *str);
+int						print_usage(char **argv);
 
 #endif

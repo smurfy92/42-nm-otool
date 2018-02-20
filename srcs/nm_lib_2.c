@@ -12,9 +12,11 @@
 
 #include "../includes/nm.h"
 
-int					myerror(char *str)
+int					myerror(char *file, char *str)
 {
-	ft_putstr("./ft_nm: ");
+	ft_putstr("./ft_otool: ");
+	ft_putstr(file);
+	ft_putstr(": ");
 	ft_putendl(str);
 	return (EXIT_FAILURE);
 }

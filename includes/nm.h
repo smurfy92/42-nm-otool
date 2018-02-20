@@ -41,6 +41,6 @@ void					ft_find_fat_32(void *ptr);
 void					ft_print_addr(unsigned long long n, int boo);
 int						print_usage(char **argv);
 void					ft_print_letter(t_lt *lt);
-int						myerror(char *str);
+int						myerror(char *file, char *str);
 
 #endif

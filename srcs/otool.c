@@ -25,7 +25,7 @@ void		handle_64(struct mach_header_64 *header)
 	{
 		if (ft_strcmp(segment->segname, SEG_TEXT) == 0)
 		{
-			print_output(segment, header);
+			print_output_64(segment, header);
 			break ;
 		}
 		segment = (struct segment_command_64 *)((char *)segment +
@@ -33,12 +33,25 @@ void		handle_64(struct mach_header_64 *header)
 	}
 }
 
-int			print_usage(char **argv)
+void		handle_32(struct mach_header *header)
 {
-	ft_putstr_fd("usage : ", 2);
-	ft_putstr_fd(argv[0], 2);
-	ft_putendl_fd(" [file]", 2);
-	return (EXIT_FAILURE);
+	int							nb;
+	int							i;
+	struct segment_command		*segment;
+
+	i = -1;
+	nb = header->ncmds;
+	segment = (struct segment_command *)(header + 1);
+	while (++i < nb)
+	{
+		if (ft_strcmp(segment->segname, SEG_TEXT) == 0)
+		{
+			print_output_32(segment, header);
+			break ;
+		}
+		segment = (struct segment_command *)((char *)segment +
+		segment->cmdsize);
+	}
 }
 
 void		otool(void *ptr)
@@ -48,6 +61,8 @@ void		otool(void *ptr)
 	magic = *(int *)ptr;
 	if (magic == (int)MH_MAGIC_64)
 		handle_64((struct mach_header_64 *)ptr);
+	if (magic == (int)MH_MAGIC)
+		handle_32((struct mach_header *)ptr);
 }
 
 int			myerror(char *str)

@@ -12,6 +12,14 @@
 
 #include "../includes/otool.h"
 
+int					print_usage(char **argv)
+{
+	ft_putstr_fd("usage : ", 2);
+	ft_putstr_fd(argv[0], 2);
+	ft_putendl_fd(" [file]", 2);
+	return (EXIT_FAILURE);
+}
+
 void				print_byte_to_hex(char byte)
 {
 	char			str[2];
@@ -49,7 +57,7 @@ static size_t		ft_nbrlen(unsigned long long n)
 	return (i);
 }
 
-void				ft_print_addr(unsigned long long n)
+void				ft_print_addr(unsigned long long n, int boo)
 {
 	char				str[ft_nbrlen(n)];
 	size_t				len;
@@ -57,7 +65,8 @@ void				ft_print_addr(unsigned long long n)
 	len = ft_nbrlen(n) - 1;
 	if (n == 0)
 	{
-		ft_putstr("                ");
+		ft_putstr("        ");
+		(boo) ? (ft_putstr("        ")) : 0;
 		return ;
 		str[len] = '0';
 	}
@@ -69,6 +78,6 @@ void				ft_print_addr(unsigned long long n)
 		n /= 16;
 		len--;
 	}
-	ft_putstr("0000000100000");
+	(boo) ? (ft_putstr("0000000100000")) : (ft_putstr("00001"));
 	ft_putstr(str);
 }

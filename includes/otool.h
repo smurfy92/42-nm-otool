@@ -22,9 +22,12 @@
 # include <mach-o/nlist.h>
 # include "../libft/includes/libft.h"
 
-void					ft_print_addr(unsigned long long n);
-void					print_output(struct segment_command_64 *seg,
+void					ft_print_addr(unsigned long long n, int boo);
+void					print_output_64(struct segment_command_64 *seg,
 struct mach_header_64 *header);
+void					print_output_32(struct segment_command *seg,
+struct mach_header *header);
 void					print_byte_to_hex(char byte);
+int						print_usage(char **argv);
 
 #endif

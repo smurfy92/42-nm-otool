@@ -27,11 +27,12 @@ struct section_64 *section)
 		while (++count < 16)
 		{
 			ft_putchar(' ');
-			print_byte_to_hex(*((char *)header + section->offset + offset++));
-			if ((char *)header + section->offset + offset <
+			print_byte_to_hex(*(((char *)header + section->offset + offset + count)));
+			if ((char *)header + section->offset + offset + count + 1>=
 			(char *)header + section->offset + section->size)
 				break ;
 		}
+		offset += 16;
 		ft_putstr("\n");
 	}
 }

@@ -33,14 +33,14 @@ typedef struct			s_lt
 	struct s_lt			*next;
 }						t_lt;
 
-void					print_output_64(struct symtab_command *sym, void *ptr);
+void					print_output_64(struct symtab_command *sym, void *ptr, char **tab);
 void					print_output_32(struct symtab_command *sym, void *ptr);
 void					handle_64(void *ptr);
 void					ft_find_fat_64(void *ptr);
 void					ft_find_fat_32(void *ptr);
 void					ft_print_addr(unsigned long long n, int boo);
 int						print_usage(char **argv);
-void					ft_print_letter(t_lt *lt);
+void					ft_print_letter(t_lt *lt, char **tab);
 int						myerror(char *file, char *str);
 
 #endif

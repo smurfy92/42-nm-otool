@@ -12,6 +12,30 @@
 
 #include "../includes/nm.h"
 
+
+char		**get_tab_64(struct segment_command_64 *seg)
+{
+	int i;
+	struct section_64 *sec;
+	char **tab;
+
+	i = -1;
+	tab = (char**)malloc(sizeof(char*) * seg->nsects + 1);
+	sec = (struct section_64 *)seg + sizeof(struct segment_command_64);
+	while (++i < (int)seg->nsects)
+	{
+		tab[i] = ft_strdup(sec->sectname);
+		sec = sec + 1;
+	}
+	i = -1;
+	while (++i < (int)seg->nsects)
+	{
+		ft_putendl(tab[i]);
+		sec = sec + 1;
+	}
+	return (tab);
+}
+
 void		handle_64(void *ptr)
 {
 	int						nb;
@@ -19,22 +43,35 @@ void		handle_64(void *ptr)
 	struct mach_header_64	*header;
 	struct load_command		*lc;
 	struct symtab_command	*sym;
+	char **tab;
 
 	i = -1;
 	header = (struct mach_header_64*)ptr;
 	nb = header->ncmds;
+	lc = (void*)ptr + sizeof(*header);
+
+	while (++i < nb)
+	{
+		if (lc->cmd == LC_SEGMENT_64)
+		{
+			tab = get_tab_64((struct segment_command_64 *)lc);
+		}
+		lc = (void*)lc + lc->cmdsize;
+	}
+	i = -1;
 	lc = (void*)ptr + sizeof(*header);
 	while (++i < nb)
 	{
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command*)lc;
-			print_output_64(sym, ptr);
+			print_output_64(sym, ptr, tab);
 			break ;
 		}
 		lc = (void*)lc + lc->cmdsize;
 	}
 }
+
 
 void		handle_32(void *ptr)
 {
@@ -48,6 +85,15 @@ void		handle_32(void *ptr)
 	header = (struct mach_header*)ptr;
 	nb = header->ncmds;
 	lc = (void*)ptr + sizeof(*header);
+	while (++i < nb)
+	{
+		if (lc->cmd == LC_SEGMENT)
+		{
+			// tab = get_tab_32((struct segment_command)lc);
+		}
+		lc = (void*)lc + lc->cmdsize;
+	}
+	i = -1;
 	while (++i < nb)
 	{
 		if (lc->cmd == LC_SYMTAB)

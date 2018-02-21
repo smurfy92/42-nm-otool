@@ -71,29 +71,34 @@ int					print_usage(char **argv)
 	return (EXIT_FAILURE);
 }
 
-void				ft_print_letter(t_lt *lt)
+void				ft_print_letter(t_lt *lt, char **tab)
 {
-	char				c;
+	char			type;
+	char			*section_name;
 
-	c = '?';
-	if ((lt->type & N_TYPE) == N_UNDF)
-		c = 'U';
-	else if ((lt->type & N_TYPE) == N_ABS)
-		c = 'A';
-	else if ((lt->type & N_TYPE) == N_SECT)
-		if (lt->sect == 8)
-			c = 'D';
+	type = 0;
+	type = ((lt->type & N_TYPE) == N_INDR) ? 'I' : type;
+	type = (!type && (lt->type & N_TYPE) == N_STAB) ? '-' : type;
+	type = (!type && (lt->type & N_TYPE) == N_UNDF
+		&& (lt->type & N_EXT) && lt->value != 0) ? 'C' : type;
+	type = (!type && (lt->type & N_TYPE) == N_UNDF
+		&& (lt->type & N_TYPE) == N_PBUD) ? 'u' : type;
+	type = (!type && (lt->type & N_TYPE) == N_UNDF) ? 'U' : type;
+	type = (!type && (lt->type & N_TYPE) == N_ABS) ? 'A' : type;
+
+	if (!type && (lt->type & N_TYPE) == N_SECT)
+	{
+		section_name = tab[lt->sect - 1];
+		if (section_name && (!ft_strcmp(section_name, SECT_TEXT)
+			|| !ft_strcmp(section_name, SECT_DATA)
+			|| !ft_strcmp(section_name, SECT_BSS)))
+			type = ft_toupper(section_name[2]);
 		else
-			c = 'T';
-	else if ((lt->type & N_TYPE) == N_PBUD)
-		c = 'U';
-	else if ((lt->type & N_TYPE) == N_INDR)
-		c = 'I';
-	if ((lt->type & N_STAB) != 0)
-		c = 'Z';
-	if ((lt->type & N_EXT) == 0 && c != '?')
-		c += 32;
+			type = 'S';
+	}
+
 	ft_putchar(' ');
-	ft_putchar(c);
+	ft_putchar(!(lt->type & N_EXT) ? ft_tolower(type) : type);
 	ft_putchar(' ');
 }
+

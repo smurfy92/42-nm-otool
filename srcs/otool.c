@@ -61,8 +61,13 @@ void		otool(void *ptr)
 	magic = *(int *)ptr;
 	if (magic == (int)MH_MAGIC_64)
 		handle_64((struct mach_header_64 *)ptr);
-	if (magic == (int)MH_MAGIC)
+	else if (magic == (int)MH_MAGIC)
 		handle_32((struct mach_header *)ptr);
+	else if (magic == (int)FAT_CIGAM_64)
+		ft_find_fat_64(ptr);
+	else if (magic == (int)FAT_CIGAM)
+		ft_find_fat_32(ptr);
+
 }
 
 void		ft_process(char *argv)

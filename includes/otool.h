@@ -20,6 +20,7 @@
 # include <sys/mman.h>
 # include <mach-o/loader.h>
 # include <mach-o/nlist.h>
+# include <mach-o/fat.h>
 # include "../libft/includes/libft.h"
 
 void					ft_print_addr(unsigned long long n, int boo);
@@ -31,5 +32,9 @@ void					print_byte_to_hex(char byte);
 int						print_usage(char **argv);
 int						myerror(char *file, char *str);
 int						print_usage(char **argv);
+void					ft_find_fat_32(void *ptr);
+void					ft_find_fat_64(void *ptr);
+void					handle_64(struct mach_header_64 *header);
+void					handle_32(struct mach_header *header);
 
 #endif

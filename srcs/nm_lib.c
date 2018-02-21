@@ -75,7 +75,7 @@ char *str, struct nlist array)
 		add_list_next(lt, tmp, new);
 }
 
-void				print_output_64(struct symtab_command *sym, void *ptr)
+void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
 {
 	int					i;
 	char				*stringtable;
@@ -85,14 +85,14 @@ void				print_output_64(struct symtab_command *sym, void *ptr)
 	lt = NULL;
 	stringtable = (void*)ptr + sym->stroff;
 	array = (void*)ptr + sym->symoff;
-	i = -1;
+	i = 0;
 	while (++i < (int)sym->nsyms)
 		add_list_64(&lt, array[i].n_value, stringtable +
 		array[i].n_un.n_strx, array[i]);
 	while (lt)
 	{
 		ft_print_addr(lt->value, 1);
-		ft_print_letter(lt);
+		ft_print_letter(lt, tab);
 		ft_putendl(lt->str);
 		lt = lt->next;
 	}
@@ -108,14 +108,14 @@ void				print_output_32(struct symtab_command *sym, void *ptr)
 	lt = NULL;
 	stringtable = (void*)ptr + sym->stroff;
 	array = (void*)ptr + sym->symoff;
-	i = -1;
+	i = 0;
 	while (++i < (int)sym->nsyms)
 		add_list_32(&lt, array[i].n_value, stringtable +
 		array[i].n_un.n_strx, array[i]);
 	while (lt)
 	{
 		ft_print_addr(lt->value, 0);
-		ft_print_letter(lt);
+		//ft_print_letter(lt, tab);
 		ft_putendl(lt->str);
 		lt = lt->next;
 	}

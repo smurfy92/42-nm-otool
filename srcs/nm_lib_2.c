@@ -21,7 +21,7 @@ int					myerror(char *file, char *str)
 	return (EXIT_FAILURE);
 }
 
-static size_t		ft_nbrlen(unsigned long long n)
+size_t		ft_nbrlen(unsigned long long n)
 {
 	size_t i;
 

@@ -21,31 +21,25 @@ char		**get_tab_64(char **tabl, struct segment_command_64 *seg)
 	char **tab2;
 
 	i = 0;
-	printf("ici\n");
 	if ((int)seg->nsects < 1)
 		return (tabl);
-	printf("ici1.5\n");
 	while (tabl && tabl[i])
 		i++;
 	tab2 = (char**)malloc(sizeof(char*) * (int)seg->nsects + i + 1);
-	tab2[(int)seg->nsects + i] = 0;
+	tab2[seg->nsects + i ] = 0;
 	i = 0;
-	printf("ici2\n");
 	while (tabl && tabl[i])
 	{
 		tab2[i] = tabl[i];
 		i++;
 	}
-	printf("ici3\n");
-	sec = (struct section_64 *)((void *)seg + sizeof(struct segment_command_64));
+	sec = (struct section_64*)(seg + 1);
 	y = -1;
 	while (++y < (int)seg->nsects)
 	{
-		tab2[i] = sec->sectname;
-		i++;
-		sec = sec + 1;
+		tab2[i++] = sec->sectname;
+		sec++;
 	}
-	printf("ici4\n");
 	return (tab2);
 }
 
@@ -62,23 +56,20 @@ char		**get_tab_32(char **tabl, struct segment_command *seg)
 	while (tabl && tabl[i])
 		i++;
 	tab2 = (char**)malloc(sizeof(char*) * (int)seg->nsects + i + 1);
-	tab2[(int)seg->nsects + i] = 0;
+	tab2[seg->nsects + i] = 0;
 	i = 0;
 	while (tabl && tabl[i])
 	{
 		tab2[i] = tabl[i];
 		i++;
 	}
-
-	sec = (struct section *)((void *)seg + sizeof(struct segment_command));
+	sec = (struct section*)(seg + 1);
 	y = -1;
 	while (++y < (int)seg->nsects)
 	{
-		tab2[i] = sec->sectname;
-		i++;
-		sec = sec + 1;
+		tab2[i++] = sec->sectname;
+		sec++;
 	}
-
 	return (tab2);
 }
 
@@ -89,25 +80,19 @@ void		handle_64(void *ptr)
 	struct mach_header_64	*header;
 	struct load_command		*lc;
 	struct symtab_command	*sym;
-	char **tabl;
+	char 					**tabl;
 
 	i = -1;
 	header = (struct mach_header_64*)ptr;
 	nb = header->ncmds;
 	lc = (void*)ptr + sizeof(*header);
 	tabl = NULL;
-
 	while (++i < nb)
 	{
 		if (lc->cmd == LC_SEGMENT_64)
-		{
-			printf("start\n");
 			tabl = get_tab_64(tabl, (struct segment_command_64 *)lc);
-			printf("end\n");
-		}
 		lc = (void*)lc + lc->cmdsize;
 	}
-	printf("sortie\n");
 	i = -1;
 	lc = (void*)ptr + sizeof(*header);
 	while (++i < nb)
@@ -115,10 +100,7 @@ void		handle_64(void *ptr)
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command*)lc;
-			printf("print start\n");
 			print_output_64(sym, ptr, tabl);
-			printf("print end\n");
-
 			break ;
 		}
 		lc = (void*)lc + lc->cmdsize;
@@ -143,11 +125,10 @@ void		handle_32(void *ptr)
 	while (++i < nb)
 	{
 		if (lc->cmd == LC_SEGMENT)
-		{
 			tabl = get_tab_32(tabl, (struct segment_command*)lc);
-		}
 		lc = (void*)lc + lc->cmdsize;
 	}
+	lc = (void*)ptr + sizeof(*header);
 	i = -1;
 	while (++i < nb)
 	{
@@ -191,7 +172,7 @@ void		ft_process(int argc, char *argv)
 		myerror(argv, "Permission or file doesnt exists");
 	else if (fstat(fd, &buf) < 0)
 		myerror(argv, "fstat");
-	else if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) ==
+	else if ((ptr = mmap(0, buf.st_size , PROT_READ, MAP_PRIVATE, fd, 0)) ==
 	MAP_FAILED)
 		myerror(argv, "mmap");
 	else

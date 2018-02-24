@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common_lib.c                                       :+:      :+:    :+:   */
+/*   nm_lib_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:05:12 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/15 15:05:15 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/24 20:45:36 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ size_t		ft_nbrlen(unsigned long long n)
 
 void				ft_print_addr(unsigned long long n, int boo)
 {
-	char				str[ft_nbrlen(n)];
+	char				str[ft_nbrlen(n) + 1];
 	size_t				len;
 
 	len = ft_nbrlen(n) - 1;
 	if (n == 0)
 	{
-		;
 		(boo) ? (ft_putstr("                ")) : ft_putstr("        ");
 		return ;
 	}

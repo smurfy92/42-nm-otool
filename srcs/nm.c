@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 15:32:41 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/08/09 16:55:41 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/24 20:45:19 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ char		**get_tab_64(char **tabl, struct segment_command_64 *seg)
 		return (tabl);
 	while (tabl && tabl[i])
 		i++;
-	tab2 = (char**)malloc(sizeof(char*) * (int)seg->nsects + i + 1);
-	tab2[seg->nsects + i ] = 0;
+	tab2 = (char**)malloc(sizeof(char*) * ((int)seg->nsects + i + 1));
+	tab2[seg->nsects + i] = 0;
 	i = 0;
 	while (tabl && tabl[i])
 	{
@@ -55,7 +55,7 @@ char		**get_tab_32(char **tabl, struct segment_command *seg)
 		return (tabl);
 	while (tabl && tabl[i])
 		i++;
-	tab2 = (char**)malloc(sizeof(char*) * (int)seg->nsects + i + 1);
+	tab2 = (char**)malloc(sizeof(char*) * ((int)seg->nsects + i + 1));
 	tab2[seg->nsects + i] = 0;
 	i = 0;
 	while (tabl && tabl[i])

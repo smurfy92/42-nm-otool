@@ -1,0 +1,908 @@
+1,2c1,2
+< 000000010007ee38 T _SHIN
+< 000000010007ec40 T _SHTTY
+---
+> 000000010007ee38 S _SHIN
+> 000000010007ec40 S _SHTTY
+29c29
+< 000000010007f2a4 T _addedx
+---
+> 000000010007f2a4 S _addedx
+46c46
+< 000000010007eb10 T _addtoline
+---
+> 000000010007eb10 S _addtoline
+51,52c51,52
+< 000000010007f5f8 T _aliasspaceflag
+< 000000010007ead8 T _aliastab
+---
+> 000000010007f5f8 S _aliasspaceflag
+> 000000010007ead8 S _aliastab
+54c54
+< 0000000100078b60 T _alt_sigs
+---
+> 0000000100078b60 S _alt_sigs
+56,57c56,57
+< 000000010007c830 T _argvparam_pm
+< 000000010007f460 T _argzero
+---
+> 000000010007c830 D _argvparam_pm
+> 000000010007f460 S _argzero
+73,76c73,76
+< 000000010007eaac T _badcshglob
+< 000000010007f468 T _bangchar
+< 000000010007ee58 T _bgstatus_count
+< 000000010007ee60 T _bgstatus_list
+---
+> 000000010007eaac S _badcshglob
+> 000000010007f468 S _bangchar
+> 000000010007ee58 S _bgstatus_count
+> 000000010007ee60 S _bgstatus_list
+116,117c116,117
+< 000000010007f310 T _breaks
+< 000000010007ee40 T _bshin
+---
+> 000000010007f310 S _breaks
+> 000000010007ee40 S _bshin
+119,122c119,122
+< 000000010007e8c8 T _bufstack
+< 000000010007e8d0 T _builtintab
+< 000000010007fee8 T _cached_uid
+< 000000010007fef0 T _cached_username
+---
+> 000000010007e8c8 S _bufstack
+> 000000010007e8d0 S _builtintab
+> 000000010007fee8 S _cached_uid
+> 000000010007fef0 S _cached_username
+126c126
+< 000000010007f470 T _cdpath
+---
+> 000000010007f470 S _cdpath
+133c133
+< 000000010007eb18 T _chline
+---
+> 000000010007eb18 S _chline
+136,138c136,138
+< 000000010007eb20 T _chwordlen
+< 000000010007eb24 T _chwordpos
+< 000000010007eb28 T _chwords
+---
+> 000000010007eb20 S _chwordlen
+> 000000010007eb24 S _chwordpos
+> 000000010007eb28 S _chwords
+146,148c146,148
+< 000000010007eae0 T _cmdnamtab
+< 000000010007e90c T _cmdoutpid
+< 000000010007e910 T _cmdoutval
+---
+> 000000010007eae0 S _cmdnamtab
+> 000000010007e90c S _cmdoutpid
+> 000000010007e910 S _cmdoutval
+151,152c151,152
+< 000000010007f6d4 T _cmdsp
+< 000000010007f6d8 T _cmdstack
+---
+> 000000010007f6d4 S _cmdsp
+> 000000010007f6d8 S _cmdstack
+156c156
+< 000000010007ac48 T _compctlreadptr
+---
+> 000000010007ac48 D _compctlreadptr
+160,162c160,162
+< 000000010007e4b0 T _condlex
+< 000000010007f350 T _condtab
+< 000000010007f314 T _contflag
+---
+> 000000010007e4b0 D _condlex
+> 000000010007f350 S _condtab
+> 000000010007f314 S _contflag
+168,169c168,169
+< 000000010007e914 T _coprocin
+< 000000010007e918 T _coprocout
+---
+> 000000010007e914 S _coprocin
+> 000000010007e918 S _coprocout
+188,192c188,192
+< 000000010007eb30 T _curhist
+< 000000010007ee68 T _curjob
+< 000000010007eb38 T _curline
+< 000000010007e920 T _current_limits
+< 000000010007e8d8 T _curtestarg
+---
+> 000000010007eb30 S _curhist
+> 000000010007ee68 S _curjob
+> 000000010007eb38 S _curline
+> 000000010007e920 S _current_limits
+> 000000010007e8d8 S _curtestarg
+195c195
+< 0000000100079420 T _default_watchfmt
+---
+> 0000000100079420 S _default_watchfmt
+213c213
+< 000000010007e8e0 T _dirstack
+---
+> 000000010007e8e0 S _dirstack
+219c219
+< 000000010007e8a0 T _doprintdir
+---
+> 000000010007e8a0 S _doprintdir
+226c226
+< 000000010007f600 T _dummy_eprog
+---
+> 000000010007f600 S _dummy_eprog
+234c234
+< 000000010007f638 T _ecbuf
+---
+> 000000010007f638 S _ecbuf
+240,242c240,242
+< 000000010007f640 T _eclen
+< 000000010007f644 T _ecnfunc
+< 000000010007f648 T _ecnpats
+---
+> 000000010007f640 S _eclen
+> 000000010007f644 S _ecnfunc
+> 000000010007f648 S _ecnpats
+244,247c244,247
+< 000000010007f64c T _ecsoffs
+< 000000010007f650 T _ecssub
+< 000000010007f658 T _ecstrs
+< 000000010007f660 T _ecused
+---
+> 000000010007f64c S _ecsoffs
+> 000000010007f650 S _ecssub
+> 000000010007f658 S _ecstrs
+> 000000010007f660 S _ecused
+254c254
+< 000000010007f388 T _emulation
+---
+> 000000010007f388 S _emulation
+265,266c265,266
+< 000000010007ee6c T _errbrk_saved
+< 000000010007e9b0 T _errflag
+---
+> 000000010007ee6c S _errbrk_saved
+> 000000010007e9b0 S _errflag
+269c269
+< 000000010007f68c T _errsfound
+---
+> 000000010007f68c S _errsfound
+275c275
+< 000000010007eb90 T _excs
+---
+> 000000010007eb90 S _excs
+292,295c292,295
+< 000000010007e8e8 T _exit_level
+< 000000010007e8ec T _exit_pending
+< 000000010007eb94 T _exlast
+< 000000010007eb98 T _expanding
+---
+> 000000010007e8e8 S _exit_level
+> 000000010007e8ec S _exit_pending
+> 000000010007eb94 S _exlast
+> 000000010007eb98 S _expanding
+298c298
+< 000000010007e9b8 T _exstack
+---
+> 000000010007e9b8 S _exstack
+306,308c306,308
+< 000000010007e9c0 T _fdtable
+< 000000010007e9c8 T _fdtable_flocks
+< 000000010007e9cc T _fdtable_size
+---
+> 000000010007e9c0 S _fdtable
+> 000000010007e9c8 S _fdtable_flocks
+> 000000010007e9cc S _fdtable_size
+315c315
+< 000000010007f6e0 T _fg_bg_sequences
+---
+> 000000010007f6e0 S _fg_bg_sequences
+318c318
+< 000000010007f478 T _fignore
+---
+> 000000010007f478 S _fignore
+335c335
+< 000000010007f690 T _forceerrs
+---
+> 000000010007f690 S _forceerrs
+337,338c337,338
+< 000000010007e9d0 T _forklevel
+< 000000010007f480 T _fpath
+---
+> 000000010007e9d0 S _forklevel
+> 000000010007f480 S _fpath
+360c360
+< 000000010007e9d8 T _funcstack
+---
+> 000000010007e9d8 S _funcstack
+431,432c431,432
+< 000000010007eab0 T _glob_pre
+< 000000010007eab8 T _glob_suf
+---
+> 000000010007eab0 S _glob_pre
+> 000000010007eab8 S _glob_suf
+436c436
+< 000000010007ec44 T _hasam
+---
+> 000000010007ec44 S _hasam
+438,439c438,439
+< 000000010007ec48 T _hasbw
+< 000000010007f488 T _hashchar
+---
+> 000000010007ec48 S _hasbw
+> 000000010007f488 S _hashchar
+448,450c448,450
+< 000000010007ec4c T _hasxn
+< 000000010007ec50 T _hasye
+< 000000010007f489 T _hatchar
+---
+> 000000010007ec4c S _hasxn
+> 000000010007ec50 S _hasye
+> 000000010007f489 S _hatchar
+455c455
+< 000000010007f668 T _hdocs
+---
+> 000000010007f668 S _hdocs
+458c458
+< 000000010007eba0 T _hgetc
+---
+> 000000010007eba0 S _hgetc
+462c462
+< 000000010007eba8 T _hist_ignore_all_dups
+---
+> 000000010007eba8 S _hist_ignore_all_dups
+464,466c464,466
+< 000000010007ebb0 T _hist_ring
+< 000000010007ebb8 T _hist_skip_flags
+< 000000010007ebbc T _histactive
+---
+> 000000010007ebb0 S _hist_ring
+> 000000010007ebb8 S _hist_skip_flags
+> 000000010007ebbc S _histactive
+470c470
+< 000000010007ebc0 T _histdone
+---
+> 000000010007ebc0 S _histdone
+473c473
+< 000000010007ebc8 T _histlinect
+---
+> 000000010007ebc8 S _histlinect
+476c476
+< 000000010007ebd0 T _histsiz
+---
+> 000000010007ebd0 S _histsiz
+481,482c481,482
+< 000000010007ebd8 T _histtab
+< 000000010007ebe0 T _hlinesz
+---
+> 000000010007ebd8 S _histtab
+> 000000010007ebe0 S _hlinesz
+486c486
+< 000000010007f490 T _home
+---
+> 000000010007f490 S _home
+489,490c489,490
+< 000000010007f358 T _hooktab
+< 000000010007ebe8 T _hptr
+---
+> 000000010007f358 S _hooktab
+> 000000010007ebe8 S _hptr
+492,497c492,497
+< 000000010007ebf0 T _hsubl
+< 000000010007ebf8 T _hsubr
+< 000000010007ec00 T _hungetc
+< 000000010007ec08 T _hwaddc
+< 000000010007ec10 T _hwbegin
+< 000000010007ec18 T _hwend
+---
+> 000000010007ebf0 S _hsubl
+> 000000010007ebf8 S _hsubr
+> 000000010007ec00 S _hungetc
+> 000000010007ec08 S _hwaddc
+> 000000010007ec10 S _hwbegin
+> 000000010007ec18 S _hwend
+503,504c503,504
+< 000000010007f498 T _ifs
+< 000000010007fef8 T _ifs_wide
+---
+> 000000010007f498 S _ifs
+> 000000010007fef8 S _ifs_wide
+509,515c509,515
+< 000000010007f2a8 T _inalmore
+< 000000010007ee48 T _inbufct
+< 000000010007ee4c T _inbufflags
+< 000000010007f670 T _incasepat
+< 000000010007f674 T _incmdpos
+< 000000010007ff08 T _incompfunc
+< 000000010007f678 T _incond
+---
+> 000000010007f2a8 S _inalmore
+> 000000010007ee48 S _inbufct
+> 000000010007ee4c S _inbufflags
+> 000000010007f670 S _incasepat
+> 000000010007f674 S _incmdpos
+> 000000010007ff08 S _incompfunc
+> 000000010007f678 S _incond
+518,519c518,519
+< 000000010007e8f0 T _ineval
+< 000000010007f67c T _infor
+---
+> 000000010007e8f0 S _ineval
+> 000000010007f67c S _infor
+542c542
+< 000000010007f680 T _inredir
+---
+> 000000010007f680 S _inredir
+545c545
+< 000000010007eac0 T _inserts
+---
+> 000000010007eac0 S _inserts
+550c550
+< 000000010007f714 T _intrap
+---
+> 000000010007f714 S _intrap
+555c555
+< 000000010007f684 T _intypeset
+---
+> 000000010007f684 S _intypeset
+557c557
+< 000000010007f2ac T _inwhat
+---
+> 000000010007f2ac S _inwhat
+561,562c561,562
+< 000000010007f2b0 T _isfirstch
+< 000000010007f2b4 T _isfirstln
+---
+> 000000010007f2b0 S _isfirstch
+> 000000010007f2b4 S _isfirstln
+564c564
+< 000000010007f688 T _isnewlin
+---
+> 000000010007f688 S _isnewlin
+570,572c570,572
+< 000000010007ee70 T _jobtab
+< 000000010007ee78 T _jobtabsize
+< 000000010007e8b8 T _keyboardhackchar
+---
+> 000000010007ee70 S _jobtab
+> 000000010007ee78 S _jobtabsize
+> 000000010007e8b8 S _keyboardhackchar
+580,587c580,587
+< 000000010007f718 T _last_signal
+< 000000010007f31c T _lastbase
+< 000000010007ff10 T _lastmailcheck
+< 000000010007f320 T _lastmathval
+< 000000010007f4a0 T _lastpid
+< 000000010007f4a8 T _lastval
+< 000000010007e9e0 T _lastval2
+< 000000010007ff18 T _lastwatch
+---
+> 000000010007f718 S _last_signal
+> 000000010007f31c S _lastbase
+> 000000010007ff10 S _lastmailcheck
+> 000000010007f320 S _lastmathval
+> 000000010007f4a0 S _lastpid
+> 000000010007f4a8 S _lastval
+> 000000010007e9e0 S _lastval2
+> 000000010007ff18 S _lastwatch
+593c593
+< 000000010007f2b8 T _lexflags
+---
+> 000000010007f2b8 S _lexflags
+595,598c595,598
+< 000000010007f2bc T _lexstop
+< 000000010007e9f0 T _limits
+< 000000010007f4b0 T _lineno
+< 000000010007f360 T _linkedmodules
+---
+> 000000010007f2bc S _lexstop
+> 000000010007e9f0 S _limits
+> 000000010007f4b0 S _lineno
+> 000000010007f360 S _linkedmodules
+602c602
+< 000000010007e8a4 T _list_pipe
+---
+> 000000010007e8a4 S _list_pipe
+605c605
+< 000000010007f4b8 T _locallevel
+---
+> 000000010007f4b8 S _locallevel
+609c609
+< 000000010007f318 T _loops
+---
+> 000000010007f318 S _loops
+612c612
+< 000000010007f4c0 T _mailpath
+---
+> 000000010007f4c0 S _mailpath
+618c618
+< 000000010007f4c8 T _manpath
+---
+> 000000010007f4c8 S _manpath
+625,627c625,627
+< 000000010007f368 T _mathfuncs
+< 000000010007ea80 T _max_zsh_fd
+< 000000010007ee7c T _maxjob
+---
+> 000000010007f368 S _mathfuncs
+> 000000010007ea80 S _max_zsh_fd
+> 000000010007ee7c S _maxjob
+656,657c656,657
+< 000000010007f370 T _module_path
+< 000000010007f378 T _modulestab
+---
+> 000000010007f370 S _module_path
+> 000000010007f378 S _modulestab
+661,663c661,663
+< 000000010007ee80 T _mypgrp
+< 000000010007f4d0 T _mypid
+< 000000010007eb08 T _nameddirtab
+---
+> 000000010007ee80 S _mypgrp
+> 000000010007f4d0 S _mypid
+> 000000010007eb08 S _nameddirtab
+677,684c677,684
+< 000000010007f2c0 T _noaliases
+< 000000010007f2c4 T _nocomments
+< 000000010007f2c8 T _nocorrect
+< 000000010007ea84 T _noerrexit
+< 000000010007ea88 T _noerrs
+< 000000010007f330 T _noeval
+< 000000010007e8ac T _noexitct
+< 000000010007ea8c T _nohistsave
+---
+> 000000010007f2c0 S _noaliases
+> 000000010007f2c4 S _nocomments
+> 000000010007f2c8 S _nocorrect
+> 000000010007ea84 S _noerrexit
+> 000000010007ea88 S _noerrs
+> 000000010007f330 S _noeval
+> 000000010007e8ac S _noexitct
+> 000000010007ea8c S _nohistsave
+689,690c689,690
+< 000000010007f71c T _nsigtrapped
+< 000000010007f4d8 T _nullcmd
+---
+> 000000010007f71c S _nsigtrapped
+> 000000010007f4d8 S _nullcmd
+692c692
+< 0000000100078cb0 T _nullsethash_gsu
+---
+> 0000000100078cb0 S _nullsethash_gsu
+694,695c694,695
+< 0000000100078c38 T _nullsetinteger_gsu
+< 0000000100078bf0 T _nullsetscalar_gsu
+---
+> 0000000100078c38 S _nullsetinteger_gsu
+> 0000000100078bf0 S _nullsetscalar_gsu
+698,699c698,699
+< 000000010007e868 T _nulstring
+< 000000010007ee84 T _numpipestats
+---
+> 000000010007e868 D _nulstring
+> 000000010007ee84 S _numpipestats
+701c701
+< 000000010007f4e0 T _oldpwd
+---
+> 000000010007f4e0 S _oldpwd
+705,706c705,706
+< 000000010007e8f4 T _optcind
+< 000000010007f390 T _optiontab
+---
+> 000000010007e8f4 S _optcind
+> 000000010007f390 S _optiontab
+709,710c709,710
+< 000000010007f3a0 T _opts
+< 000000010007ee88 T _origpgrp
+---
+> 000000010007f3a0 S _opts
+> 000000010007ee88 S _origpgrp
+712,713c712,713
+< 000000010007f334 T _outputradix
+< 000000010007f338 T _outputunderscore
+---
+> 000000010007f334 S _outputradix
+> 000000010007f338 S _outputunderscore
+715c715
+< 000000010007f4e8 T _paramtab
+---
+> 000000010007f4e8 S _paramtab
+717,718c717,718
+< 000000010007f2cc T _parbegin
+< 000000010007f2d0 T _parend
+---
+> 000000010007f2cc S _parbegin
+> 000000010007f2d0 S _parend
+735,738c735,738
+< 000000010007f4f0 T _path
+< 000000010007eac8 T _pathbuf
+< 000000010007eae8 T _pathchecked
+< 000000010007ead0 T _pathpos
+---
+> 000000010007f4f0 S _path
+> 000000010007eac8 S _pathbuf
+> 000000010007eae8 S _pathchecked
+> 000000010007ead0 S _pathpos
+749c749
+< 000000010007ee90 T _pipestats
+---
+> 000000010007ee90 S _pipestats
+752,753c752,753
+< 000000010007f4f8 T _posixzero
+< 000000010007f500 T _postedit
+---
+> 000000010007f4f8 S _posixzero
+> 000000010007f500 S _postedit
+756,757c756,757
+< 000000010007f508 T _pparams
+< 000000010007f510 T _ppid
+---
+> 000000010007f508 S _pparams
+> 000000010007f510 S _ppid
+761,763c761,763
+< 000000010007f290 T _prev_breaks
+< 000000010007f294 T _prev_errflag
+< 000000010007f298 T _prevjob
+---
+> 000000010007f290 S _prev_breaks
+> 000000010007f294 S _prev_errflag
+> 000000010007f298 S _prevjob
+775,778c775,778
+< 000000010007f518 T _prompt
+< 000000010007f520 T _prompt2
+< 000000010007f528 T _prompt3
+< 000000010007f530 T _prompt4
+---
+> 000000010007f518 S _prompt
+> 000000010007f520 S _prompt2
+> 000000010007f528 S _prompt3
+> 000000010007f530 S _prompt4
+780c780
+< 000000010007f538 T _psvar
+---
+> 000000010007f538 S _psvar
+789,790c789,790
+< 000000010007f540 T _pwd
+< 000000010007ec20 T _qbang
+---
+> 000000010007f540 S _pwd
+> 000000010007ec20 S _qbang
+792,793c792,793
+< 000000010007f720 T _queue_front
+< 000000010007f724 T _queue_rear
+---
+> 000000010007f720 S _queue_front
+> 000000010007f724 S _queue_rear
+795c795
+< 000000010007f728 T _queueing_enabled
+---
+> 000000010007f728 S _queueing_enabled
+811c811
+< 000000010007f548 T _readnullcmd
+---
+> 000000010007f548 S _readnullcmd
+814c814
+< 000000010007f550 T _realparamtab
+---
+> 000000010007f550 S _realparamtab
+831c831
+< 000000010007ff20 T _resetneeded
+---
+> 000000010007ff20 S _resetneeded
+835,836c835,836
+< 000000010007eaf0 T _reswdtab
+< 000000010007ea90 T _retflag
+---
+> 000000010007eaf0 S _reswdtab
+> 000000010007ea90 S _retflag
+839,841c839,841
+< 000000010007f558 T _rprompt
+< 000000010007f560 T _rprompt2
+< 000000010007f568 T _rprompt_indent
+---
+> 000000010007f558 S _rprompt
+> 000000010007f560 S _rprompt2
+> 000000010007f568 S _rprompt_indent
+847c847
+< 000000010007ec28 T _savehistsiz
+---
+> 000000010007ec28 S _savehistsiz
+857,858c857,858
+< 000000010007ff28 T _scriptfilename
+< 000000010007ff30 T _scriptname
+---
+> 000000010007ff28 S _scriptfilename
+> 000000010007ff30 S _scriptname
+899c899
+< 000000010007ea94 T _sfcontext
+---
+> 000000010007ea94 S _sfcontext
+902c902
+< 000000010007eaf8 T _shfunctab
+---
+> 000000010007eaf8 S _shfunctab
+904,906c904,906
+< 000000010007f570 T _shlvl
+< 000000010007ec58 T _shout
+< 000000010007f578 T _shtimer
+---
+> 000000010007f570 S _shlvl
+> 000000010007ec58 S _shout
+> 000000010007f578 S _shtimer
+908,909c908,909
+< 000000010007ff38 T _shttyinfo
+< 000000010007e640 T _sig_msg
+---
+> 000000010007ff38 S _shttyinfo
+> 000000010007e640 D _sig_msg
+911,912c911,912
+< 000000010007ec60 T _sigchld_mask
+< 000000010007f730 T _siglists
+---
+> 000000010007ec60 S _sigchld_mask
+> 000000010007f730 S _siglists
+916,917c916,917
+< 000000010007f840 T _signal_mask_queue
+< 000000010007fa40 T _signal_queue
+---
+> 000000010007f840 S _signal_mask_queue
+> 000000010007fa40 S _signal_queue
+922c922
+< 000000010007e750 T _sigs
+---
+> 000000010007e750 D _sigs
+924,925c924,925
+< 000000010007fc40 T _sigtrapped
+< 000000010007e8a8 T _simple_pline
+---
+> 000000010007fc40 S _sigtrapped
+> 000000010007e8a8 S _simple_pline
+931c931
+< 000000010007ec64 T _sourcelevel
+---
+> 000000010007ec64 S _sourcelevel
+935c935
+< 000000010007f588 T _sprompt
+---
+> 000000010007f588 S _sprompt
+941,945c941,945
+< 0000000100078c68 T _stdarray_gsu
+< 0000000100078c50 T _stdfloat_gsu
+< 0000000100078c98 T _stdhash_gsu
+< 0000000100078c08 T _stdinteger_gsu
+< 0000000100078bc0 T _stdscalar_gsu
+---
+> 0000000100078c68 S _stdarray_gsu
+> 0000000100078c50 S _stdfloat_gsu
+> 0000000100078c98 S _stdhash_gsu
+> 0000000100078c08 S _stdinteger_gsu
+> 0000000100078bc0 S _stdscalar_gsu
+947c947
+< 000000010007f458 T _sticky
+---
+> 000000010007f458 S _sticky
+950,951c950,951
+< 000000010007ec30 T _stophist
+< 000000010007e8f8 T _stopmsg
+---
+> 000000010007ec30 S _stophist
+> 000000010007e8f8 S _stopmsg
+963c963
+< 000000010007ee50 T _strin
+---
+> 000000010007ee50 S _strin
+984c984
+< 000000010007ea98 T _subsh
+---
+> 000000010007ea98 S _subsh
+989c989
+< 000000010007eb00 T _sufaliastab
+---
+> 000000010007eb00 S _sufaliastab
+994,995c994,995
+< 000000010007ec68 T _tccolours
+< 000000010007ec6c T _tccolumns
+---
+> 000000010007ec68 S _tccolours
+> 000000010007ec6c S _tccolumns
+998,999c998,999
+< 000000010007ec70 T _tclen
+< 000000010007ecf8 T _tclines
+---
+> 000000010007ec70 S _tclen
+> 000000010007ecf8 S _tclines
+1002,1004c1002,1004
+< 000000010007ed00 T _tcstr
+< 000000010007f590 T _term
+< 000000010007f598 T _termflags
+---
+> 000000010007ed00 S _tcstr
+> 000000010007f590 S _term
+> 000000010007f598 S _termflags
+1009c1009
+< 000000010007e900 T _testargs
+---
+> 000000010007e900 S _testargs
+1011c1011
+< 000000010007fee4 T _text_expand_tabs
+---
+> 000000010007fee4 S _text_expand_tabs
+1017c1017
+< 000000010007f29c T _thisjob
+---
+> 000000010007f29c S _thisjob
+1022c1022
+< 000000010007ff88 T _timedfns
+---
+> 000000010007ff88 S _timedfns
+1024c1024
+< 000000010007f2d4 T _tok
+---
+> 000000010007f2d4 S _tok
+1026,1029c1026,1029
+< 000000010007f2d8 T _tokfd
+< 000000010007f2e0 T _toklineno
+< 000000010007f2e8 T _tokstr
+< 000000010007ac80 T _tokstrings
+---
+> 000000010007f2d8 S _tokfd
+> 000000010007f2e0 S _toklineno
+> 000000010007f2e8 S _tokstr
+> 000000010007ac80 D _tokstrings
+1031,1039c1031,1039
+< 000000010007e908 T _tracingcond
+< 000000010007fcd0 T _trap_queue
+< 000000010007fed0 T _trap_queue_front
+< 000000010007fed4 T _trap_queue_rear
+< 000000010007fed8 T _trap_queueing_enabled
+< 000000010007ea9c T _trap_return
+< 000000010007eaa0 T _trap_state
+< 000000010007fedc T _trapisfunc
+< 000000010007fee0 T _traplocallevel
+---
+> 000000010007e908 S _tracingcond
+> 000000010007fcd0 S _trap_queue
+> 000000010007fed0 S _trap_queue_front
+> 000000010007fed4 S _trap_queue_rear
+> 000000010007fed8 S _trap_queueing_enabled
+> 000000010007ea9c S _trap_return
+> 000000010007eaa0 S _trap_state
+> 000000010007fedc S _trapisfunc
+> 000000010007fee0 S _traplocallevel
+1042,1043c1042,1043
+< 000000010007ae88 T _try_errflag
+< 000000010007ae90 T _try_interrupt
+---
+> 000000010007ae88 D _try_errflag
+> 000000010007ae90 D _try_interrupt
+1045c1045
+< 000000010007e8b0 T _try_tryflag
+---
+> 000000010007e8b0 S _try_tryflag
+1047c1047
+< 000000010007f2a0 T _ttyfrozen
+---
+> 000000010007f2a0 S _ttyfrozen
+1050c1050
+< 000000010007f5a0 T _ttystrname
+---
+> 000000010007f5a0 S _ttystrname
+1053,1054c1053,1054
+< 000000010007f710 T _txtattrmask
+< 000000010007ff90 T _typtab
+---
+> 000000010007f710 S _txtattrmask
+> 000000010007ff90 S _typtab
+1062,1063c1062,1063
+< 000000010007ee10 T _underscorelen
+< 000000010007ee14 T _underscoreused
+---
+> 000000010007ee10 S _underscorelen
+> 000000010007ee14 S _underscoreused
+1080,1081c1080,1081
+< 000000010007eaa4 T _use_cmdoutval
+< 000000010007ee18 T _use_exit_printed
+---
+> 000000010007eaa4 S _use_cmdoutval
+> 000000010007ee18 S _use_exit_printed
+1085,1087c1085,1087
+< 0000000100078c80 T _vararray_gsu
+< 0000000100078c20 T _varinteger_gsu
+< 0000000100078bd8 T _varscalar_gsu
+---
+> 0000000100078c80 S _vararray_gsu
+> 0000000100078c20 S _varinteger_gsu
+> 0000000100078bd8 S _varscalar_gsu
+1092,1093c1092,1093
+< 000000010007f5a8 T _watch
+< 000000010007f2f0 T _wb
+---
+> 000000010007f5a8 S _watch
+> 000000010007f2f0 S _wb
+1103,1104c1103,1104
+< 000000010007f2f4 T _we
+< 0000000100080190 T _winchanged
+---
+> 000000010007f2f4 S _we
+> 0000000100080190 S _winchanged
+1107,1109c1107,1109
+< 000000010007f2f8 T _wordbeg
+< 000000010007f5b0 T _wordchars
+< 0000000100080198 T _wordchars_wide
+---
+> 000000010007f2f8 S _wordbeg
+> 000000010007f5b0 S _wordchars
+> 0000000100080198 S _wordchars_wide
+1113c1113
+< 000000010007f380 T _wrappers
+---
+> 000000010007f380 S _wrappers
+1119c1119
+< 000000010007e8c0 T _xtrerr
+---
+> 000000010007e8c0 S _xtrerr
+1130c1130
+< 000000010007f340 T _zero_mnumber
+---
+> 000000010007f340 S _zero_mnumber
+1148,1151c1148,1151
+< 000000010007ec38 T _zle_chline
+< 000000010007ee20 T _zle_entry_ptr
+< 000000010007ee28 T _zle_load_state
+< 000000010007eaa8 T _zleactive
+---
+> 000000010007ec38 S _zle_chline
+> 000000010007ee20 S _zle_entry_ptr
+> 000000010007ee28 S _zle_load_state
+> 000000010007eaa8 S _zleactive
+1153,1154c1153,1154
+< 000000010007f2fc T _zlemetacs
+< 000000010007f300 T _zlemetall
+---
+> 000000010007f2fc S _zlemetacs
+> 000000010007f300 S _zlemetall
+1159,1160c1159,1160
+< 000000010007f5b8 T _zoptarg
+< 000000010007f5c0 T _zoptind
+---
+> 000000010007f5b8 S _zoptarg
+> 000000010007f5c0 S _zoptind
+1162,1164c1162,1164
+< 000000010007f6a0 T _zpc_disables
+< 000000010007f6c0 T _zpc_special
+< 000000010007e4c0 T _zpc_strings
+---
+> 000000010007f6a0 S _zpc_disables
+> 000000010007f6c0 S _zpc_special
+> 000000010007e4c0 D _zpc_strings
+1171c1171
+< 000000010007f5c8 T _zsh_eval_context
+---
+> 000000010007f5c8 S _zsh_eval_context
+1173,1175c1173,1175
+< 000000010007f5d0 T _zsh_name
+< 000000010007f5d8 T _zsh_subshell
+< 000000010007f5e0 T _zsh_terminfo
+---
+> 000000010007f5d0 S _zsh_name
+> 000000010007f5d8 S _zsh_subshell
+> 000000010007f5e0 S _zsh_terminfo
+1177c1177
+< 000000010007abd0 T _zshhooks
+---
+> 000000010007abd0 D _zshhooks
+1183c1183
+< 000000010007f308 T _zshlextext
+---
+> 000000010007f308 S _zshlextext
+1189,1191c1189,1191
+< 000000010007f5e8 T _zterm_columns
+< 000000010007f5f0 T _zterm_lines
+< 000000010007ac60 T _ztokens
+---
+> 000000010007f5e8 S _zterm_columns
+> 000000010007f5f0 S _zterm_lines
+> 000000010007ac60 D _ztokens
+1200c1200
+< 000000010007ee30 T _zunderscore
+---
+> 000000010007ee30 S _zunderscore

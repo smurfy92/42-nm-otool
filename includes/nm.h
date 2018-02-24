@@ -34,7 +34,7 @@ typedef struct			s_lt
 }						t_lt;
 
 void					print_output_64(struct symtab_command *sym, void *ptr, char **tab);
-void					print_output_32(struct symtab_command *sym, void *ptr);
+void					print_output_32(struct symtab_command *sym, void *ptr, char **tab);
 void					handle_64(void *ptr);
 void					ft_find_fat_64(void *ptr);
 void					ft_find_fat_32(void *ptr);

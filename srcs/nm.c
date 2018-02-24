@@ -13,27 +13,73 @@
 #include "../includes/nm.h"
 
 
-char		**get_tab_64(struct segment_command_64 *seg)
+char		**get_tab_64(char **tabl, struct segment_command_64 *seg)
 {
 	int i;
+	int y;
 	struct section_64 *sec;
-	char **tab;
+	char **tab2;
 
-	i = -1;
-	tab = (char**)malloc(sizeof(char*) * seg->nsects + 1);
-	sec = (struct section_64 *)seg + sizeof(struct segment_command_64);
-	while (++i < (int)seg->nsects)
+	i = 0;
+	printf("ici\n");
+	if ((int)seg->nsects < 1)
+		return (tabl);
+	printf("ici1.5\n");
+	while (tabl && tabl[i])
+		i++;
+	tab2 = (char**)malloc(sizeof(char*) * (int)seg->nsects + i + 1);
+	tab2[(int)seg->nsects + i] = 0;
+	i = 0;
+	printf("ici2\n");
+	while (tabl && tabl[i])
 	{
-		tab[i] = ft_strdup(sec->sectname);
+		tab2[i] = tabl[i];
+		i++;
+	}
+	printf("ici3\n");
+	sec = (struct section_64 *)((void *)seg + sizeof(struct segment_command_64));
+	y = -1;
+	while (++y < (int)seg->nsects)
+	{
+		tab2[i] = sec->sectname;
+		i++;
 		sec = sec + 1;
 	}
-	i = -1;
-	while (++i < (int)seg->nsects)
+	printf("ici4\n");
+	return (tab2);
+}
+
+char		**get_tab_32(char **tabl, struct segment_command *seg)
+{
+	int i;
+	int y;
+	struct section *sec;
+	char **tab2;
+
+	i = 0;
+	if ((int)seg->nsects < 1)
+		return (tabl);
+	while (tabl && tabl[i])
+		i++;
+	tab2 = (char**)malloc(sizeof(char*) * (int)seg->nsects + i + 1);
+	tab2[(int)seg->nsects + i] = 0;
+	i = 0;
+	while (tabl && tabl[i])
 	{
-		ft_putendl(tab[i]);
+		tab2[i] = tabl[i];
+		i++;
+	}
+
+	sec = (struct section *)((void *)seg + sizeof(struct segment_command));
+	y = -1;
+	while (++y < (int)seg->nsects)
+	{
+		tab2[i] = sec->sectname;
+		i++;
 		sec = sec + 1;
 	}
-	return (tab);
+
+	return (tab2);
 }
 
 void		handle_64(void *ptr)
@@ -43,21 +89,25 @@ void		handle_64(void *ptr)
 	struct mach_header_64	*header;
 	struct load_command		*lc;
 	struct symtab_command	*sym;
-	char **tab;
+	char **tabl;
 
 	i = -1;
 	header = (struct mach_header_64*)ptr;
 	nb = header->ncmds;
 	lc = (void*)ptr + sizeof(*header);
+	tabl = NULL;
 
 	while (++i < nb)
 	{
 		if (lc->cmd == LC_SEGMENT_64)
 		{
-			tab = get_tab_64((struct segment_command_64 *)lc);
+			printf("start\n");
+			tabl = get_tab_64(tabl, (struct segment_command_64 *)lc);
+			printf("end\n");
 		}
 		lc = (void*)lc + lc->cmdsize;
 	}
+	printf("sortie\n");
 	i = -1;
 	lc = (void*)ptr + sizeof(*header);
 	while (++i < nb)
@@ -65,7 +115,10 @@ void		handle_64(void *ptr)
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command*)lc;
-			print_output_64(sym, ptr, tab);
+			printf("print start\n");
+			print_output_64(sym, ptr, tabl);
+			printf("print end\n");
+
 			break ;
 		}
 		lc = (void*)lc + lc->cmdsize;
@@ -80,16 +133,18 @@ void		handle_32(void *ptr)
 	struct mach_header		*header;
 	struct load_command		*lc;
 	struct symtab_command	*sym;
+	char **tabl;
 
 	i = -1;
 	header = (struct mach_header*)ptr;
 	nb = header->ncmds;
 	lc = (void*)ptr + sizeof(*header);
+	tabl = NULL;
 	while (++i < nb)
 	{
 		if (lc->cmd == LC_SEGMENT)
 		{
-			// tab = get_tab_32((struct segment_command)lc);
+			tabl = get_tab_32(tabl, (struct segment_command*)lc);
 		}
 		lc = (void*)lc + lc->cmdsize;
 	}
@@ -99,7 +154,7 @@ void		handle_32(void *ptr)
 		if (lc->cmd == LC_SYMTAB)
 		{
 			sym = (struct symtab_command*)lc;
-			print_output_32(sym, ptr);
+			print_output_32(sym, ptr, tabl);
 			break ;
 		}
 		lc = (void*)lc + lc->cmdsize;

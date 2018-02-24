@@ -89,9 +89,9 @@ void				ft_print_letter(t_lt *lt, char **tab)
 	if (!type && (lt->type & N_TYPE) == N_SECT)
 	{
 		section_name = tab[lt->sect - 1];
-		if (section_name && (!ft_strcmp(section_name, SECT_TEXT)
-			|| !ft_strcmp(section_name, SECT_DATA)
-			|| !ft_strcmp(section_name, SECT_BSS)))
+		if (section_name && (!ft_strcmp(section_name, "__text")
+			|| !ft_strcmp(section_name, "__data")
+			|| !ft_strcmp(section_name, "__bss")))
 			type = ft_toupper(section_name[2]);
 		else
 			type = 'S';

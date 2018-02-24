@@ -12,7 +12,7 @@
 
 #include "../includes/nm.h"
 
-static	void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
+void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
 {
 	if (ft_strcmp(tmp->str, new->str) > 0)
 	{
@@ -37,23 +37,40 @@ static	void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
 	}
 }
 
-static	void		add_list_64(t_lt **lt, unsigned long long value,
+void		add_list_64(t_lt **lt, unsigned long long value,
 char *str, struct nlist_64 array)
 {
 	t_lt *new;
 	t_lt *tmp;
 
+	ft_putendl("ici start");
 	tmp = *lt;
+	ft_putendl("ici ass");
+	ft_putnbr(sizeof(t_lt));
+	ft_putchar('\n');
 	new = (t_lt*)malloc(sizeof(t_lt));
+	if (new == NULL)
+	{
+		ft_putendl("malloc err");
+		exit(0);
+	}
+
+	ft_putendl("ici");
 	new->value = value;
+	ft_putendl("ici2");
 	new->type = array.n_type;
+	ft_putendl("ici3");
 	new->sect = array.n_sect;
+	ft_putendl("ici4");
 	new->str = ft_strdup(str);
+	ft_putendl("ici5");
 	new->next = NULL;
+	ft_putendl("ici6");
 	if (!*lt)
 		*lt = new;
 	else
 		add_list_next(lt, tmp, new);
+	ft_putendl("ici7");
 }
 
 static	void		add_list_32(t_lt **lt, unsigned long long value,
@@ -63,7 +80,7 @@ char *str, struct nlist array)
 	t_lt *tmp;
 
 	tmp = *lt;
-	new = (t_lt*)malloc(sizeof(t_lt));
+	new = (t_lt*)malloc(sizeof(t_lt) + 1);
 	new->value = value;
 	new->type = array.n_type;
 	new->sect = array.n_sect;
@@ -87,18 +104,26 @@ void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
 	array = (void*)ptr + sym->symoff;
 	i = 0;
 	while (++i < (int)sym->nsyms)
+	{
+		printf("add start\n");
 		add_list_64(&lt, array[i].n_value, stringtable +
 		array[i].n_un.n_strx, array[i]);
+		printf("add end\n");
+	}
+	printf("add ended\n");
 	while (lt)
 	{
+		printf("print start\n");
 		ft_print_addr(lt->value, 1);
 		ft_print_letter(lt, tab);
 		ft_putendl(lt->str);
 		lt = lt->next;
+		printf("print end\n");
 	}
+	printf("print ended\n");
 }
 
-void				print_output_32(struct symtab_command *sym, void *ptr)
+void				print_output_32(struct symtab_command *sym, void *ptr, char **tab)
 {
 	int					i;
 	char				*stringtable;
@@ -115,7 +140,7 @@ void				print_output_32(struct symtab_command *sym, void *ptr)
 	while (lt)
 	{
 		ft_print_addr(lt->value, 0);
-		//ft_print_letter(lt, tab);
+		ft_print_letter(lt, tab);
 		ft_putendl(lt->str);
 		lt = lt->next;
 	}

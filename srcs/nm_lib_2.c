@@ -57,8 +57,6 @@ void				ft_print_addr(unsigned long long n, int boo)
 	}
 	if (boo)
 		ft_putstr("0000000");
-	else
-		ft_putstr("0000");
 	len = -1;
 	while (++len < 9 - ft_strlen(str))
 		ft_putchar('0');

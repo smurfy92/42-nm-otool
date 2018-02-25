@@ -93,8 +93,21 @@ void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
 	stringtable = (void*)ptr + sym->stroff;
 	array = (void*)ptr + sym->symoff;
 	i = 0;
+	printf(" nb -> %d\n", sym->nsyms);
 	while (++i < (int)sym->nsyms)
-		add_list_64(&lt, stringtable + array[i].n_un.n_strx, array[i]);
+		{
+			if (array[i].n_un.n_strx != 1)
+			{
+				printf("str -> %s\n", stringtable + array[i].n_un.n_strx);
+				printf("offset str -> %u\n", array[i].n_un.n_strx);
+				printf("value -> %llu\n", array[i].n_value);
+				printf("type -> %hhu\n", array[i].n_type);
+				printf("sect -> %hhu\n", array[i].n_sect);
+				printf("desc -> %hu\n", array[i].n_desc);
+				add_list_64(&lt, stringtable + array[i].n_un.n_strx, array[i]);
+			}
+
+		}
 	while (lt)
 	{
 		ft_print_addr(lt->value, 1);
@@ -114,7 +127,7 @@ void				print_output_32(struct symtab_command *sym, void *ptr, char **tab)
 	lt = NULL;
 	stringtable = (void*)ptr + sym->stroff;
 	array = (void*)ptr + sym->symoff;
-	i = 0;
+	i = -1;
 	while (++i < (int)sym->nsyms)
 		add_list_32(&lt, stringtable + array[i].n_un.n_strx, array[i]);
 	while (lt)

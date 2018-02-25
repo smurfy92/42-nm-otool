@@ -33,6 +33,15 @@ static void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
 			tmp->next = new;
 			break ;
 		}
+		if (ft_strcmp(tmp->next->str, new->str) == 0)
+		{
+			if (tmp->next->value > new->value)
+			{
+				new->next = tmp->next;
+				tmp->next = new;
+				break ;
+			}
+		}
 		tmp = tmp->next;
 	}
 }

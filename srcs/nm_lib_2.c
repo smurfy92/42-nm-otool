@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:05:12 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/24 20:45:36 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/25 02:36:32 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int					myerror(char *file, char *str)
 {
-	ft_putstr("./ft_otool: ");
-	ft_putstr(file);
-	ft_putstr(": ");
-	ft_putendl(str);
+	ft_putstr_fd("./ft_otool: ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(str, 2);
 	return (EXIT_FAILURE);
 }
 
@@ -84,20 +84,15 @@ void				ft_print_letter(t_lt *lt, char **tab)
 		&& (lt->type & N_TYPE) == N_PBUD) ? 'u' : type;
 	type = (!type && (lt->type & N_TYPE) == N_UNDF) ? 'U' : type;
 	type = (!type && (lt->type & N_TYPE) == N_ABS) ? 'A' : type;
-
 	if (!type && (lt->type & N_TYPE) == N_SECT)
 	{
 		section_name = tab[lt->sect - 1];
-		if (section_name && (!ft_strcmp(section_name, "__text")
+		type = (section_name && (!ft_strcmp(section_name, "__text")
 			|| !ft_strcmp(section_name, "__data")
-			|| !ft_strcmp(section_name, "__bss")))
-			type = ft_toupper(section_name[2]);
-		else
-			type = 'S';
+			|| !ft_strcmp(section_name, "__bss"))) ? 
+		ft_toupper(section_name[2]) : 'S';
 	}
-
 	ft_putchar(' ');
 	ft_putchar(!(lt->type & N_EXT) ? ft_tolower(type) : type);
 	ft_putchar(' ');
 }
-

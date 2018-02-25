@@ -12,7 +12,7 @@ all: start
 	-@make -C libft nohd
 	@gcc -o ft_otool srcs/otool_lib.c srcs/otool.c srcs/otool_lib_2.c srcs/otool_lib_3.c $(FLAG) $(INC) $(LIB);
 	@echo "$(CY)[OTOOL] :$(CE) $(CG)Compiling otool ...$(CE)";
-	@gcc -g -fsanitize=address -o ft_nm srcs/nm.c srcs/nm_lib.c srcs/nm_lib_2.c srcs/nm_lib_3.c $(FLAG) $(INC)  $(LIB);
+	@gcc -o ft_nm srcs/nm.c srcs/nm_lib.c srcs/nm_lib_2.c srcs/nm_lib_3.c $(FLAG) $(INC)  $(LIB);
 	@echo "\033[K$(CY)[NM] :$(CE) $(CG)Compiling nm ...$(CE)";
 
 

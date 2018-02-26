@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/31 14:16:17 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/26 22:56:27 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 23:07:58 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void					print_output_32(struct segment_command *seg,
 struct mach_header *header, int boo);
 void					print_byte_to_hex(char byte);
 int						print_usage(char **argv);
-int						myerror(char *file, char *str);
+int						error(char *file, char *str);
 int						print_usage(char **argv);
 void					find_fat_32(void *ptr);
 void					find_fat_64(void *ptr);

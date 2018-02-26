@@ -78,7 +78,7 @@ void				print_addr(unsigned long long n, int boo)
 	ft_putstr(str);
 }
 
-int					myerror(char *file, char *str)
+int					error(char *file, char *str)
 {
 	ft_putstr("./ft_otool: ");
 	ft_putstr(file);

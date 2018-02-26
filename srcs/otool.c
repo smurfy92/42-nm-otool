@@ -88,19 +88,19 @@ void		process(char *argv)
 	struct stat		buf;
 
 	if ((fd = open(argv, O_RDONLY)) < 0)
-		myerror(argv, "Permission or file doesnt exists");
+		error(argv, "Permission or file doesnt exists");
 	else if (fstat(fd, &buf) < 0)
-		myerror(argv, "fstat");
+		error(argv, "fstat");
 	else if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) ==
 	MAP_FAILED)
-		myerror(argv, "mmap");
+		error(argv, "mmap");
 	else
 	{
 		ft_putstr(argv);
 		ft_putendl(":");
 		otool(ptr);
 		if (munmap(ptr, buf.st_size) < 0)
-			myerror(argv, "munmap");
+			error(argv, "munmap");
 	}
 }
 

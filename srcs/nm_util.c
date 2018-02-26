@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 15:44:40 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/26 20:35:11 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:54:57 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int					reverse_endian(int x)
 	return (x << 16) | (x >> 16);
 }
 
-int					myerror(char *file, char *str)
+int					error(char *file, char *str)
 {
 	ft_putstr_fd("./ft_otool: ", 2);
 	ft_putstr_fd(file, 2);
@@ -27,7 +27,7 @@ int					myerror(char *file, char *str)
 	return (EXIT_FAILURE);
 }
 
-size_t				ft_nbrlen(unsigned long long n)
+static	size_t		nbrlen(unsigned long long n)
 {
 	size_t i;
 
@@ -42,12 +42,12 @@ size_t				ft_nbrlen(unsigned long long n)
 	return (i);
 }
 
-void				ft_print_addr(unsigned long long n, int boo)
+void				print_addr(unsigned long long n, int boo)
 {
-	char				str[ft_nbrlen(n) + 1];
+	char				str[nbrlen(n) + 1];
 	size_t				len;
 
-	len = ft_nbrlen(n) - 1;
+	len = nbrlen(n) - 1;
 	if (n == 0)
 	{
 		(boo) ? (ft_putstr("                ")) : ft_putstr("        ");

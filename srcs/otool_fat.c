@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   otool_lib_2.c                                      :+:      :+:    :+:   */
+/*   otool_fat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:07:30 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/15 15:07:32 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:55:32 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			reverse_endian(int x)
 	return (x << 16) | (x >> 16);
 }
 
-void		ft_find_fat_32(void *ptr)
+void		find_fat_32(void *ptr)
 {
 	int					i;
 	int					narch;
@@ -41,7 +41,7 @@ void		ft_find_fat_32(void *ptr)
 	}
 }
 
-void		ft_find_fat_64(void *ptr)
+void		find_fat_64(void *ptr)
 {
 	int					i;
 	int					narch;

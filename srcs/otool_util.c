@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:07:30 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/26 19:50:13 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:55:58 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void				print_byte_to_hex(char byte)
 	ft_putchar(str[0]);
 }
 
-static size_t		ft_nbrlen(unsigned long long n)
+static size_t		nbrlen(unsigned long long n)
 {
 	size_t i;
 
@@ -49,12 +49,12 @@ static size_t		ft_nbrlen(unsigned long long n)
 	return (i);
 }
 
-void				ft_print_addr(unsigned long long n, int boo)
+void				print_addr(unsigned long long n, int boo)
 {
-	char				str[ft_nbrlen(n) + 1];
+	char				str[nbrlen(n) + 1];
 	size_t				len;
 
-	len = ft_nbrlen(n) - 1;
+	len = nbrlen(n) - 1;
 	if (n == 0)
 	{
 		(boo) ? (ft_putstr("0000000000000000")) : ft_putstr("00000000");

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   otool_lib.c                                        :+:      :+:    :+:   */
+/*   otool_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/31 14:09:02 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/26 12:19:55 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:56:49 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ struct section_64 *section, int boo, int boo2)
 	while (header + section->offset + offset <
 	header + section->offset + section->size)
 	{
-		(boo2) ? (ft_print_addr(offset, boo)) :
-		ft_print_addr(section->offset + offset, boo);
+		(boo2) ? (print_addr(offset, boo)) :
+		print_addr(section->offset + offset, boo);
 		count = -1;
 		ft_putstr("	");
 		while (++count < 16)
@@ -49,8 +49,8 @@ struct section *section, int boo, int boo2)
 	while (header + section->offset + offset <
 	header + section->offset + section->size)
 	{
-		(boo2) ? (ft_print_addr(offset, boo)) :
-		ft_print_addr(section->offset + offset, boo);
+		(boo2) ? (print_addr(offset, boo)) :
+		print_addr(section->offset + offset, boo);
 		count = -1;
 		ft_putstr("	");
 		while (++count < 16)

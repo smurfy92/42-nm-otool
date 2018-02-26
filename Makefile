@@ -2,8 +2,8 @@
 NM_SRC = srcs/nm.c
 NM_SRC += srcs/nm_fat.c
 NM_SRC += srcs/nm_list.c
-NM_SRC += srcs/nm_tab.c
 NM_SRC += srcs/nm_util.c
+NM_SRC += srcs/nm_print_and_tab.c
 
 OT_SRC = srcs/otool.c
 OT_SRC += srcs/otool_fat.c

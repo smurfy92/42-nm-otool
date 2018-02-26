@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nmotool.h                                          :+:      :+:    :+:   */
+/*   nm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 16:25:24 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/08/09 16:51:48 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:52:37 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,23 @@ typedef struct			s_lt
 }						t_lt;
 
 void					nm(void *ptr);
-void					print_output_64(struct symtab_command *sym,
-void *ptr, char **tab);
 void					print_output_32(struct symtab_command *sym,
-void *ptr, char **tab);
+	void *ptr, char **tab);
+void					print_output_64(struct symtab_command *sym,
+	void *ptr, char **tab);
+void					add_list_32(t_lt **lt, char *str, struct nlist array);
+void					add_list_64(t_lt **lt, char *str,
+	struct nlist_64 array);
+void					find_fat_32(void *ptr);
+void					find_fat_64(void *ptr);
+void					print_addr(unsigned long long n, int boo);
+void					print_letter(t_lt *lt, char **tab);
 char					**get_tab_64(char **tabl,
-struct segment_command_64 *seg);
+	struct segment_command_64 *seg);
 char					**get_tab_32(char **tabl,
-struct segment_command *seg);
+	struct segment_command *seg);
 int						reverse_endian(int x);
-void					push_list_next(t_lt *tmp, t_lt *new);
-void					handle_64(void *ptr);
-void					handle_32(void *ptr);
-void					ft_find_fat_64(void *ptr);
-void					ft_find_fat_32(void *ptr);
-void					ft_print_addr(unsigned long long n, int boo);
+int						error(char *file, char *str);
 int						print_usage(char **argv);
-void					ft_print_letter(t_lt *lt, char **tab);
-int						myerror(char *file, char *str);
 
 #endif

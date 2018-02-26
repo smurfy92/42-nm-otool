@@ -6,13 +6,13 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 15:32:41 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/26 22:03:46 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:58:01 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/nm.h"
 
-void		handle_64(void *ptr)
+static void		handle_64(void *ptr)
 {
 	uint32_t				i;
 	struct mach_header_64	*header;
@@ -36,7 +36,7 @@ void		handle_64(void *ptr)
 	print_output_64(sym, ptr, tabl);
 }
 
-void		handle_32(void *ptr)
+static void		handle_32(void *ptr)
 {
 	uint32_t				i;
 	struct mach_header		*header;
@@ -60,7 +60,7 @@ void		handle_32(void *ptr)
 	print_output_32(sym, ptr, tabl);
 }
 
-void		nm(void *ptr)
+void			nm(void *ptr)
 {
 	int magic;
 
@@ -70,38 +70,38 @@ void		nm(void *ptr)
 	else if (magic == (int)MH_MAGIC)
 		handle_32(ptr);
 	else if (magic == (int)FAT_CIGAM_64)
-		ft_find_fat_64(ptr);
+		find_fat_64(ptr);
 	else if (magic == (int)FAT_CIGAM)
-		ft_find_fat_32(ptr);
+		find_fat_32(ptr);
 }
 
-void		ft_process(int argc, char *argv)
+static void		process(int argc, char *argv)
 {
 	int				fd;
 	char			*ptr;
 	struct stat		buf;
 
-	if (argc > 2)
-	{
-		ft_putstr(argv);
-		ft_putendl(":");
-	}
 	if ((fd = open(argv, O_RDONLY)) < 0)
-		myerror(argv, "Permission or file doesnt exists");
+		error(argv, "Permission or file doesnt exists");
 	else if (fstat(fd, &buf) < 0)
-		myerror(argv, "fstat");
+		error(argv, "fstat");
 	else if ((ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) ==
 	MAP_FAILED)
-		myerror(argv, "mmap");
+		error(argv, "mmap");
 	else
 	{
+		if (argc > 2)
+		{
+			ft_putstr(argv);
+			ft_putendl(":");
+		}
 		nm(ptr);
 		if (munmap(ptr, buf.st_size) < 0)
-			myerror(argv, "munmap");
+			error(argv, "munmap");
 	}
 }
 
-int			main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	int			i;
 
@@ -109,7 +109,6 @@ int			main(int argc, char **argv)
 	if (argc < 2)
 		return (print_usage(argv));
 	while (++i < argc)
-		ft_process(argc, argv[i]);
-	while (1);
+		process(argc, argv[i]);
 	return (EXIT_SUCCESS);
 }

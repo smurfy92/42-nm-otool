@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 15:33:26 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/26 12:16:45 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:59:15 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void		otool(void *ptr)
 	else if (magic == (int)MH_MAGIC)
 		handle_32((struct mach_header *)ptr);
 	else if (magic == (int)FAT_CIGAM_64)
-		ft_find_fat_64(ptr);
+		find_fat_64(ptr);
 	else if (magic == (int)FAT_CIGAM)
-		ft_find_fat_32(ptr);
+		find_fat_32(ptr);
 }
 
-void		ft_process(char *argv)
+void		process(char *argv)
 {
 	int				fd;
 	char			*ptr;
@@ -112,6 +112,6 @@ int			main(int argc, char **argv)
 	if (argc < 2)
 		return (print_usage(argv));
 	while (++i < argc)
-		ft_process(argv[i]);
+		process(argv[i]);
 	return (EXIT_SUCCESS);
 }

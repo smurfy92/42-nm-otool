@@ -6,7 +6,7 @@
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:07:30 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/15 15:07:32 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 12:01:05 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static size_t		ft_nbrlen(unsigned long long n)
 
 void				ft_print_addr(unsigned long long n, int boo)
 {
-	char				str[ft_nbrlen(n)];
+	char				str[ft_nbrlen(n) + 1];
 	size_t				len;
 
 	len = ft_nbrlen(n) - 1;
@@ -68,12 +68,10 @@ void				ft_print_addr(unsigned long long n, int boo)
 		n /= 16;
 		len--;
 	}
-	len = 0;
-	(boo) ? ft_putstr("000") : 0;
-	ft_putstr("00001");
 	if (boo)
-		while (len++ < 8 - ft_strlen(str))
-			ft_putchar('0');
+		ft_putstr("0000000");
+	else
+		ft_putstr("0000");
 	ft_putstr(str);
 }
 

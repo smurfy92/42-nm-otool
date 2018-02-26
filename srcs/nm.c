@@ -82,7 +82,7 @@ void		handle_64(void *ptr)
 	{
 		if (lc->cmd == LC_SEGMENT_64)
 			tabl = get_tab_64(tabl, (struct segment_command_64 *)lc);
-		if (lc->cmd == LC_SYMTAB && !sym)
+		if (lc->cmd == LC_SYMTAB)
 			sym = (struct symtab_command*)lc;
 		lc = (void*)lc + lc->cmdsize;
 	}
@@ -109,7 +109,7 @@ void		handle_32(void *ptr)
 	{
 		if (lc->cmd == LC_SEGMENT)
 			tabl = get_tab_32(tabl, (struct segment_command*)lc);
-		if (lc->cmd == LC_SYMTAB && !sym)
+		if (lc->cmd == LC_SYMTAB)
 			sym = (struct symtab_command*)lc;
 		lc = (void*)lc + lc->cmdsize;
 	}

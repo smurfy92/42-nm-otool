@@ -40,8 +40,10 @@ void				ft_print_addr(unsigned long long n, int boo)
 {
 	char				str[ft_nbrlen(n) + 1];
 	size_t				len;
+	size_t				len2;
 
 	len = ft_nbrlen(n) - 1;
+	len2 = ft_nbrlen(n) - 1;
 	if (n == 0)
 	{
 		(boo) ? (ft_putstr("                ")) : ft_putstr("        ");
@@ -56,9 +58,9 @@ void				ft_print_addr(unsigned long long n, int boo)
 		len--;
 	}
 	if (boo)
-		ft_putstr("0000000");
+		ft_putstr("00000000");
 	len = -1;
-	while (++len < 9 - ft_strlen(str))
+	while (++len < 8 - ft_strlen(str))
 		ft_putchar('0');
 	ft_putstr(str);
 }

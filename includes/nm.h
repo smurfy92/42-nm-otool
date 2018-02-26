@@ -33,6 +33,7 @@ typedef struct			s_lt
 	struct s_lt			*next;
 }						t_lt;
 
+void					nm(void *ptr);
 void					print_output_64(struct symtab_command *sym, void *ptr, char **tab);
 void					print_output_32(struct symtab_command *sym, void *ptr, char **tab);
 void					handle_64(void *ptr);

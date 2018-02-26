@@ -27,8 +27,7 @@ void		ft_find_fat_32(void *ptr)
 	{
 		if (OSSwapBigToHostInt(arch->cputype) == CPU_TYPE_X86_64)
 		{
-			handle_64(ptr + (((arch->offset & 0xffff0000) >> 16 |
-				(arch->offset & 0x0000ffff)) << 8));
+			nm(ptr + OSSwapBigToHostInt(arch->offset));
 			return ;
 		}
 		arch = arch + 1;
@@ -50,8 +49,7 @@ void		ft_find_fat_64(void *ptr)
 	{
 		if (OSSwapBigToHostInt(arch->cputype) == CPU_TYPE_X86_64)
 		{
-			handle_64(ptr + (((arch->offset & 0xffff0000) >> 16 |
-			(arch->offset & 0x0000ffff)) << 8));
+			nm(ptr + OSSwapBigToHostInt(arch->offset));
 			return ;
 		}
 		arch = arch + 1;

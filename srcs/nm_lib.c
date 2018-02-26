@@ -20,6 +20,15 @@ static void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
 		*lt = new;
 		return ;
 	}
+	if (ft_strcmp(tmp->str, new->str) == 0)
+	{
+		if (tmp->value > new->value)
+		{
+			new->next = tmp;
+			*lt = new;
+			return ;
+		}
+	}
 	while (tmp)
 	{
 		if (!tmp->next)
@@ -84,7 +93,7 @@ static void		add_list_32(t_lt **lt, char *str, struct nlist array)
 
 void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
 {
-	int					i;
+	uint32_t			i;
 	char				*stringtable;
 	struct nlist_64		*array;
 	t_lt				*lt;
@@ -92,12 +101,17 @@ void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
 	lt = NULL;
 	stringtable = (void*)ptr + sym->stroff;
 	array = (void*)ptr + sym->symoff;
-	i = 0;
-	while (++i < (int)sym->nsyms)
-		add_list_64(&lt, stringtable + array[i].n_un.n_strx, array[i]);
+	i = -1;
+	while (++i < sym->nsyms)
+		if (!(array[i].n_type & N_STAB))
+			add_list_64(&lt, stringtable + array[i].n_un.n_strx, array[i]);
 	while (lt)
 	{
-		ft_print_addr(lt->value, 1);
+
+		if (lt->value == 0 && (lt->type & N_TYPE) != N_UNDF)
+			ft_putstr("0000000000000000");
+		else
+			ft_print_addr(lt->value, 1);
 		ft_print_letter(lt, tab);
 		ft_putendl(lt->str);
 		lt = lt->next;
@@ -106,7 +120,7 @@ void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
 
 void				print_output_32(struct symtab_command *sym, void *ptr, char **tab)
 {
-	int					i;
+	uint32_t			i;
 	char				*stringtable;
 	struct nlist		*array;
 	t_lt				*lt;
@@ -115,11 +129,16 @@ void				print_output_32(struct symtab_command *sym, void *ptr, char **tab)
 	stringtable = (void*)ptr + sym->stroff;
 	array = (void*)ptr + sym->symoff;
 	i = -1;
-	while (++i < (int)sym->nsyms)
-		add_list_32(&lt, stringtable + array[i].n_un.n_strx, array[i]);
+	while (++i < sym->nsyms)
+		if (!(array[i].n_type & N_STAB))
+			add_list_32(&lt, stringtable + array[i].n_un.n_strx, array[i]);
 	while (lt)
 	{
-		ft_print_addr(lt->value, 0);
+
+		if (lt->value == 0 && (lt->type & N_TYPE) != N_UNDF)
+			ft_putstr("00000000");
+		else
+			ft_print_addr(lt->value, 0);
 		ft_print_letter(lt, tab);
 		ft_putendl(lt->str);
 		lt = lt->next;

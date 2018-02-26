@@ -12,7 +12,7 @@
 
 #include "../includes/nm.h"
 
-static void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
+static void		push_list(t_lt **lt, t_lt *tmp, t_lt *new)
 {
 	if (ft_strcmp(tmp->str, new->str) > 0)
 	{
@@ -20,33 +20,19 @@ static void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
 		*lt = new;
 		return ;
 	}
-	while (tmp)
+	if (ft_strcmp(tmp->str, new->str) == 0)
 	{
-		if (!tmp->next)
+		if (tmp->value > new->value)
 		{
-			tmp->next = new;
-			break ;
+			new->next = tmp;
+			*lt = new;
+			return ;
 		}
-		if (ft_strcmp(tmp->next->str, new->str) > 0)
-		{
-			new->next = tmp->next;
-			tmp->next = new;
-			break ;
-		}
-		if (ft_strcmp(tmp->next->str, new->str) == 0)
-		{
-			if (tmp->next->value > new->value)
-			{
-				new->next = tmp->next;
-				tmp->next = new;
-				break ;
-			}
-		}
-		tmp = tmp->next;
 	}
+	push_list_next(tmp, new);
 }
 
-static void		add_list_64(t_lt **lt,char *str, struct nlist_64 array)
+static void		add_list_64(t_lt **lt, char *str, struct nlist_64 array)
 {
 	t_lt *new;
 	t_lt *tmp;
@@ -61,7 +47,7 @@ static void		add_list_64(t_lt **lt,char *str, struct nlist_64 array)
 	if (!*lt)
 		*lt = new;
 	else
-		add_list_next(lt, tmp, new);
+		push_list(lt, tmp, new);
 }
 
 static void		add_list_32(t_lt **lt, char *str, struct nlist array)
@@ -79,12 +65,13 @@ static void		add_list_32(t_lt **lt, char *str, struct nlist array)
 	if (!*lt)
 		*lt = new;
 	else
-		add_list_next(lt, tmp, new);
+		push_list(lt, tmp, new);
 }
 
-void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
+void			print_output_64(struct symtab_command *sym, void *ptr,
+char **tab)
 {
-	int					i;
+	uint32_t			i;
 	char				*stringtable;
 	struct nlist_64		*array;
 	t_lt				*lt;
@@ -92,34 +79,26 @@ void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
 	lt = NULL;
 	stringtable = (void*)ptr + sym->stroff;
 	array = (void*)ptr + sym->symoff;
-	i = 0;
-	printf(" nb -> %d\n", sym->nsyms);
-	while (++i < (int)sym->nsyms)
-		{
-			if (array[i].n_un.n_strx != 1)
-			{
-				printf("str -> %s\n", stringtable + array[i].n_un.n_strx);
-				printf("offset str -> %u\n", array[i].n_un.n_strx);
-				printf("value -> %llu\n", array[i].n_value);
-				printf("type -> %hhu\n", array[i].n_type);
-				printf("sect -> %hhu\n", array[i].n_sect);
-				printf("desc -> %hu\n", array[i].n_desc);
-				add_list_64(&lt, stringtable + array[i].n_un.n_strx, array[i]);
-			}
-
-		}
+	i = -1;
+	while (++i < sym->nsyms)
+		if (!(array[i].n_type & N_STAB))
+			add_list_64(&lt, stringtable + array[i].n_un.n_strx, array[i]);
 	while (lt)
 	{
-		ft_print_addr(lt->value, 1);
+		if (lt->value == 0 && (lt->type & N_TYPE) != N_UNDF)
+			ft_putstr("0000000000000000");
+		else
+			ft_print_addr(lt->value, 1);
 		ft_print_letter(lt, tab);
 		ft_putendl(lt->str);
 		lt = lt->next;
 	}
 }
 
-void				print_output_32(struct symtab_command *sym, void *ptr, char **tab)
+void			print_output_32(struct symtab_command *sym, void *ptr,
+char **tab)
 {
-	int					i;
+	uint32_t			i;
 	char				*stringtable;
 	struct nlist		*array;
 	t_lt				*lt;
@@ -128,11 +107,15 @@ void				print_output_32(struct symtab_command *sym, void *ptr, char **tab)
 	stringtable = (void*)ptr + sym->stroff;
 	array = (void*)ptr + sym->symoff;
 	i = -1;
-	while (++i < (int)sym->nsyms)
-		add_list_32(&lt, stringtable + array[i].n_un.n_strx, array[i]);
+	while (++i < sym->nsyms)
+		if (!(array[i].n_type & N_STAB))
+			add_list_32(&lt, stringtable + array[i].n_un.n_strx, array[i]);
 	while (lt)
 	{
-		ft_print_addr(lt->value, 0);
+		if (lt->value == 0 && (lt->type & N_TYPE) != N_UNDF)
+			ft_putstr("00000000");
+		else
+			ft_print_addr(lt->value, 0);
 		ft_print_letter(lt, tab);
 		ft_putendl(lt->str);
 		lt = lt->next;

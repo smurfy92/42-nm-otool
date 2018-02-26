@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_lib_3.c                                         :+:      :+:    :+:   */
+/*   otool_lib_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtranchi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 15:44:40 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/20 15:44:41 by jtranchi         ###   ########.fr       */
+/*   Created: 2018/02/15 15:07:30 by jtranchi          #+#    #+#             */
+/*   Updated: 2018/02/15 15:07:32 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/nm.h"
+#include "../includes/otool.h"
+
+int			reverse_endian(int x)
+{
+	x = ((x << 8) & 0xFF00FF00) | ((x >> 8) & 0xFF00FF);
+	return (x << 16) | (x >> 16);
+}
 
 void		ft_find_fat_32(void *ptr)
 {
@@ -21,14 +27,14 @@ void		ft_find_fat_32(void *ptr)
 
 	i = -1;
 	fat = (struct fat_header*)ptr;
-	narch = OSSwapBigToHostInt(fat->nfat_arch);
+	narch = reverse_endian(fat->nfat_arch);
 	arch = (struct fat_arch*)(fat + 1);
 	while (++i < (int)narch)
 	{
-		if (OSSwapBigToHostInt(arch->cputype) == CPU_TYPE_X86_64)
+		if (reverse_endian(arch->cputype) == CPU_TYPE_X86_64 ||
+			reverse_endian(arch->cputype) == CPU_TYPE_X86)
 		{
-			handle_64(ptr + (((arch->offset & 0xffff0000) >> 16 |
-				(arch->offset & 0x0000ffff)) << 8));
+			otool(ptr + reverse_endian(arch->offset));
 			return ;
 		}
 		arch = arch + 1;
@@ -44,14 +50,14 @@ void		ft_find_fat_64(void *ptr)
 
 	i = -1;
 	fat = (struct fat_header*)ptr;
-	narch = OSSwapBigToHostInt(fat->nfat_arch);
+	narch = reverse_endian(fat->nfat_arch);
 	arch = (struct fat_arch_64*)(fat + 1);
 	while (++i < (int)narch)
 	{
-		if (OSSwapBigToHostInt(arch->cputype) == CPU_TYPE_X86_64)
+		if (reverse_endian(arch->cputype) == CPU_TYPE_X86_64 ||
+			reverse_endian(arch->cputype) == CPU_TYPE_X86)
 		{
-			handle_64(ptr + (((arch->offset & 0xffff0000) >> 16 |
-			(arch->offset & 0x0000ffff)) << 8));
+			otool(ptr + OSSwapBigToHostInt(arch->offset));
 			return ;
 		}
 		arch = arch + 1;

@@ -23,11 +23,12 @@
 # include <mach-o/fat.h>
 # include "../libft/includes/libft.h"
 
+void					otool(void *ptr);
 void					ft_print_addr(unsigned long long n, int boo);
 void					print_output_64(struct segment_command_64 *seg,
-struct mach_header_64 *header);
+struct mach_header_64 *header, int boo);
 void					print_output_32(struct segment_command *seg,
-struct mach_header *header);
+struct mach_header *header, int boo);
 void					print_byte_to_hex(char byte);
 int						print_usage(char **argv);
 int						myerror(char *file, char *str);

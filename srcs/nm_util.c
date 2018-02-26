@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_lib_2.c                                         :+:      :+:    :+:   */
+/*   nm_lib_3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jtranchi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 15:05:12 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/25 02:36:32 by jtranchi         ###   ########.fr       */
+/*   Created: 2018/02/20 15:44:40 by jtranchi          #+#    #+#             */
+/*   Updated: 2018/02/20 15:44:41 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/nm.h"
+
+int					reverse_endian(int x)
+{
+	x = ((x << 8) & 0xFF00FF00) | ((x >> 8) & 0xFF00FF);
+	return (x << 16) | (x >> 16);
+}
 
 int					myerror(char *file, char *str)
 {
@@ -21,7 +27,7 @@ int					myerror(char *file, char *str)
 	return (EXIT_FAILURE);
 }
 
-size_t		ft_nbrlen(unsigned long long n)
+size_t				ft_nbrlen(unsigned long long n)
 {
 	size_t i;
 
@@ -55,11 +61,13 @@ void				ft_print_addr(unsigned long long n, int boo)
 		n /= 16;
 		len--;
 	}
-	if (boo)
-		ft_putstr("0000000");
 	len = -1;
-	while (++len < 9 - ft_strlen(str))
-		ft_putchar('0');
+	if (boo)
+		while (++len + ft_strlen(str) < 16)
+			(len == 7) ? (ft_putchar('1')) : (ft_putchar('0'));
+	else
+		while (++len + ft_strlen(str) < 8)
+			ft_putchar('0');
 	ft_putstr(str);
 }
 
@@ -69,31 +77,4 @@ int					print_usage(char **argv)
 	ft_putstr_fd(argv[0], 2);
 	ft_putendl_fd(" [file]", 2);
 	return (EXIT_FAILURE);
-}
-
-void				ft_print_letter(t_lt *lt, char **tab)
-{
-	char			type;
-	char			*section_name;
-
-	type = 0;
-	type = ((lt->type & N_TYPE) == N_INDR) ? 'I' : type;
-	type = (!type && (lt->type & N_TYPE) == N_STAB) ? '-' : type;
-	type = (!type && (lt->type & N_TYPE) == N_UNDF
-		&& (lt->type & N_EXT) && lt->value != 0) ? 'C' : type;
-	type = (!type && (lt->type & N_TYPE) == N_UNDF
-		&& (lt->type & N_TYPE) == N_PBUD) ? 'u' : type;
-	type = (!type && (lt->type & N_TYPE) == N_UNDF) ? 'U' : type;
-	type = (!type && (lt->type & N_TYPE) == N_ABS) ? 'A' : type;
-	if (!type && (lt->type & N_TYPE) == N_SECT)
-	{
-		section_name = tab[lt->sect - 1];
-		type = (section_name && (!ft_strcmp(section_name, "__text")
-			|| !ft_strcmp(section_name, "__data")
-			|| !ft_strcmp(section_name, "__bss"))) ?
-		ft_toupper(section_name[2]) : 'S';
-	}
-	ft_putchar(' ');
-	ft_putchar(!(lt->type & N_EXT) ? ft_tolower(type) : type);
-	ft_putchar(' ');
 }

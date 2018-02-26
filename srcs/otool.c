@@ -17,6 +17,7 @@ void		handle_64(struct mach_header_64 *header)
 	int							nb;
 	int							i;
 	struct segment_command_64	*segment;
+	struct segment_command_64	*tmp;
 
 	i = -1;
 	nb = header->ncmds;
@@ -25,12 +26,17 @@ void		handle_64(struct mach_header_64 *header)
 	{
 		if (ft_strcmp(segment->segname, SEG_TEXT) == 0)
 		{
-			print_output_64(segment, header);
+			print_output_64(segment, header, 0);
+			tmp = NULL;
 			break ;
 		}
+		else if (segment->cmd == LC_SEGMENT_64)
+			tmp = segment;
 		segment = (struct segment_command_64 *)((char *)segment +
 		segment->cmdsize);
 	}
+	if (tmp)
+		print_output_64(tmp, header, 1);
 }
 
 void		handle_32(struct mach_header *header)
@@ -38,6 +44,7 @@ void		handle_32(struct mach_header *header)
 	int							nb;
 	int							i;
 	struct segment_command		*segment;
+	struct segment_command		*tmp;
 
 	i = -1;
 	nb = header->ncmds;
@@ -46,12 +53,17 @@ void		handle_32(struct mach_header *header)
 	{
 		if (ft_strcmp(segment->segname, SEG_TEXT) == 0)
 		{
-			print_output_32(segment, header);
+			print_output_32(segment, header, 0);
+			tmp = NULL;
 			break ;
 		}
+		else if (segment->cmd == LC_SEGMENT)
+			tmp = segment;
 		segment = (struct segment_command *)((char *)segment +
 		segment->cmdsize);
 	}
+	if (tmp)
+		print_output_32(tmp, header, 1);
 }
 
 void		otool(void *ptr)
@@ -67,7 +79,6 @@ void		otool(void *ptr)
 		ft_find_fat_64(ptr);
 	else if (magic == (int)FAT_CIGAM)
 		ft_find_fat_32(ptr);
-
 }
 
 void		ft_process(char *argv)

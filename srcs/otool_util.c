@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   otool_lib_2.c                                      :+:      :+:    :+:   */
+/*   otool_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:07:30 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/26 12:01:05 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 19:50:13 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void				ft_print_addr(unsigned long long n, int boo)
 	len = ft_nbrlen(n) - 1;
 	if (n == 0)
 	{
-		(boo) ? (ft_putstr("                ")) : ft_putstr("        ");
+		(boo) ? (ft_putstr("0000000000000000")) : ft_putstr("00000000");
 		return ;
 	}
 	str[len + 1] = '\0';
@@ -68,10 +68,13 @@ void				ft_print_addr(unsigned long long n, int boo)
 		n /= 16;
 		len--;
 	}
+	len = -1;
 	if (boo)
-		ft_putstr("0000000");
+		while (++len + ft_strlen(str) < 16)
+			(len == 7) ? (ft_putchar('1')) : (ft_putchar('0'));
 	else
-		ft_putstr("0000");
+		while (++len + ft_strlen(str) < 8)
+			ft_putchar('0');
 	ft_putstr(str);
 }
 

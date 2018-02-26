@@ -33,8 +33,17 @@ typedef struct			s_lt
 	struct s_lt			*next;
 }						t_lt;
 
-void					print_output_64(struct symtab_command *sym, void *ptr, char **tab);
-void					print_output_32(struct symtab_command *sym, void *ptr, char **tab);
+void					nm(void *ptr);
+void					print_output_64(struct symtab_command *sym,
+void *ptr, char **tab);
+void					print_output_32(struct symtab_command *sym,
+void *ptr, char **tab);
+char					**get_tab_64(char **tabl,
+struct segment_command_64 *seg);
+char					**get_tab_32(char **tabl,
+struct segment_command *seg);
+int						reverse_endian(int x);
+void					push_list_next(t_lt *tmp, t_lt *new);
 void					handle_64(void *ptr);
 void					handle_32(void *ptr);
 void					ft_find_fat_64(void *ptr);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   otool_lib_2.c                                      :+:      :+:    :+:   */
+/*   otool_lib_3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jtranchi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 15:07:30 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/15 15:07:32 by jtranchi         ###   ########.fr       */
+/*   Created: 2018/02/21 14:33:23 by jtranchi          #+#    #+#             */
+/*   Updated: 2018/02/21 14:33:24 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ static size_t		ft_nbrlen(unsigned long long n)
 
 void				ft_print_addr(unsigned long long n, int boo)
 {
-	char				str[ft_nbrlen(n)];
+	char				str[ft_nbrlen(n) + 1];
 	size_t				len;
 
 	len = ft_nbrlen(n) - 1;
 	if (n == 0)
 	{
-		(boo) ? (ft_putstr("                ")) : ft_putstr("        ");
+		(boo) ? (ft_putstr("0000000000000000")) : ft_putstr("00000000");
 		return ;
 	}
 	str[len + 1] = '\0';
@@ -68,11 +68,12 @@ void				ft_print_addr(unsigned long long n, int boo)
 		n /= 16;
 		len--;
 	}
-	len = 0;
-	(boo) ? ft_putstr("000") : 0;
-	ft_putstr("00001");
+	len = -1;
 	if (boo)
-		while (len++ < 8 - ft_strlen(str))
+		while (++len + ft_strlen(str) < 16)
+			(len == 7) ? (ft_putchar('1')) : (ft_putchar('0'));
+	else
+		while (++len + ft_strlen(str) < 8)
 			ft_putchar('0');
 	ft_putstr(str);
 }

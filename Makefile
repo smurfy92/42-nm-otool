@@ -1,5 +1,18 @@
 
-OBJ = $(SRC:.c=.o)
+NM_SRC = srcs/nm.c
+NM_SRC += srcs/nm_fat.c
+NM_SRC += srcs/nm_list.c
+NM_SRC += srcs/nm_tab.c
+NM_SRC += srcs/nm_util.c
+
+OT_SRC = srcs/otool.c
+OT_SRC += srcs/otool_fat.c
+OT_SRC += srcs/otool_print.c
+OT_SRC += srcs/otool_util.c
+
+NM_OBJ = $(NM_SRC:.c=.o)
+OT_OBJ = $(OT_SRC:.c=.o)
+
 LIB = libft/libft.a
 FLAG = -Wall -Werror -Wextra
 CG = \033[92m
@@ -10,9 +23,9 @@ INC = -I ./includes/
 
 all: start
 	-@make -C libft nohd
-	@gcc -o ft_otool srcs/otool_lib.c srcs/otool.c srcs/otool_lib_2.c srcs/otool_lib_3.c $(FLAG) $(INC) $(LIB);
+	@gcc -o ft_otool $(OT_SRC) $(FLAG) $(INC) $(LIB);
 	@echo "$(CY)[OTOOL] :$(CE) $(CG)Compiling otool ...$(CE)";
-	@gcc -g -fsanitize=address -o ft_nm srcs/nm.c srcs/nm_lib.c srcs/nm_lib_2.c srcs/nm_lib_3.c $(FLAG) $(INC)  $(LIB);
+	@gcc -g -fsanitize=address -o ft_nm $(NM_SRC) $(FLAG) $(INC)  $(LIB);
 	@echo "\033[K$(CY)[NM] :$(CE) $(CG)Compiling nm ...$(CE)";
 
 

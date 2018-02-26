@@ -13,7 +13,7 @@
 #include "../includes/otool.h"
 
 void				print_output_64_suite(char *header,
-struct section_64 *section, int boo)
+struct section_64 *section, int boo, int boo2)
 {
 	size_t				offset;
 	size_t				count;
@@ -22,6 +22,7 @@ struct section_64 *section, int boo)
 	while (header + section->offset + offset <
 	header + section->offset + section->size)
 	{
+		(boo2) ? (ft_print_addr(offset, boo)) :
 		ft_print_addr(section->offset + offset, boo);
 		count = -1;
 		ft_putstr("	");
@@ -39,7 +40,7 @@ struct section_64 *section, int boo)
 }
 
 void				print_output_32_suite(char *header,
-struct section *section, int boo)
+struct section *section, int boo, int boo2)
 {
 	size_t				offset;
 	size_t				count;
@@ -48,6 +49,7 @@ struct section *section, int boo)
 	while (header + section->offset + offset <
 	header + section->offset + section->size)
 	{
+		(boo2) ? (ft_print_addr(offset, boo)) :
 		ft_print_addr(section->offset + offset, boo);
 		count = -1;
 		ft_putstr("	");
@@ -65,7 +67,7 @@ struct section *section, int boo)
 }
 
 void				print_output_64(struct segment_command_64 *seg,
-struct mach_header_64 *header)
+struct mach_header_64 *header, int boo)
 {
 	struct section_64	*section;
 	size_t				count;
@@ -79,11 +81,11 @@ struct mach_header_64 *header)
 		section += 1;
 	}
 	ft_putendl("Contents of (__TEXT,__text) section");
-	print_output_64_suite((char *)header, section, 1);
+	print_output_64_suite((char *)header, section, 1, boo);
 }
 
 void				print_output_32(struct segment_command *seg,
-struct mach_header *header)
+struct mach_header *header, int boo)
 {
 	struct section		*section;
 	size_t				count;
@@ -97,5 +99,5 @@ struct mach_header *header)
 		section += 1;
 	}
 	ft_putendl("Contents of (__TEXT,__text) section");
-	print_output_32_suite((char *)header, section, 0);
+	print_output_32_suite((char *)header, section, 1, boo);
 }

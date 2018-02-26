@@ -12,7 +12,7 @@
 
 #include "../includes/nm.h"
 
-static void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
+static void		push_list(t_lt **lt, t_lt *tmp, t_lt *new)
 {
 	if (ft_strcmp(tmp->str, new->str) > 0)
 	{
@@ -29,33 +29,10 @@ static void		add_list_next(t_lt **lt, t_lt *tmp, t_lt *new)
 			return ;
 		}
 	}
-	while (tmp)
-	{
-		if (!tmp->next)
-		{
-			tmp->next = new;
-			break ;
-		}
-		if (ft_strcmp(tmp->next->str, new->str) > 0)
-		{
-			new->next = tmp->next;
-			tmp->next = new;
-			break ;
-		}
-		if (ft_strcmp(tmp->next->str, new->str) == 0)
-		{
-			if (tmp->next->value > new->value)
-			{
-				new->next = tmp->next;
-				tmp->next = new;
-				break ;
-			}
-		}
-		tmp = tmp->next;
-	}
+	push_list_next(tmp, new);
 }
 
-static void		add_list_64(t_lt **lt,char *str, struct nlist_64 array)
+static void		add_list_64(t_lt **lt, char *str, struct nlist_64 array)
 {
 	t_lt *new;
 	t_lt *tmp;
@@ -70,7 +47,7 @@ static void		add_list_64(t_lt **lt,char *str, struct nlist_64 array)
 	if (!*lt)
 		*lt = new;
 	else
-		add_list_next(lt, tmp, new);
+		push_list(lt, tmp, new);
 }
 
 static void		add_list_32(t_lt **lt, char *str, struct nlist array)
@@ -88,10 +65,11 @@ static void		add_list_32(t_lt **lt, char *str, struct nlist array)
 	if (!*lt)
 		*lt = new;
 	else
-		add_list_next(lt, tmp, new);
+		push_list(lt, tmp, new);
 }
 
-void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
+void			print_output_64(struct symtab_command *sym, void *ptr,
+char **tab)
 {
 	uint32_t			i;
 	char				*stringtable;
@@ -107,7 +85,6 @@ void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
 			add_list_64(&lt, stringtable + array[i].n_un.n_strx, array[i]);
 	while (lt)
 	{
-
 		if (lt->value == 0 && (lt->type & N_TYPE) != N_UNDF)
 			ft_putstr("0000000000000000");
 		else
@@ -118,7 +95,8 @@ void				print_output_64(struct symtab_command *sym, void *ptr, char **tab)
 	}
 }
 
-void				print_output_32(struct symtab_command *sym, void *ptr, char **tab)
+void			print_output_32(struct symtab_command *sym, void *ptr,
+char **tab)
 {
 	uint32_t			i;
 	char				*stringtable;
@@ -134,7 +112,6 @@ void				print_output_32(struct symtab_command *sym, void *ptr, char **tab)
 			add_list_32(&lt, stringtable + array[i].n_un.n_strx, array[i]);
 	while (lt)
 	{
-
 		if (lt->value == 0 && (lt->type & N_TYPE) != N_UNDF)
 			ft_putstr("00000000");
 		else

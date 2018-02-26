@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_lib_3.c                                         :+:      :+:    :+:   */
+/*   nm_util.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jtranchi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 15:44:40 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/20 15:44:41 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 20:35:11 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void				ft_print_addr(unsigned long long n, int boo)
 	len = -1;
 	if (boo)
 		while (++len + ft_strlen(str) < 16)
-			(len == 7) ? (ft_putchar('1')) : (ft_putchar('0'));
+			ft_putchar('0');
 	else
 		while (++len + ft_strlen(str) < 8)
 			ft_putchar('0');

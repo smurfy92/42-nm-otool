@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_lib_2.c                                         :+:      :+:    :+:   */
+/*   nm_fat.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:05:12 by jtranchi          #+#    #+#             */
-/*   Updated: 2018/02/25 02:36:32 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 20:24:29 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void		ft_find_fat_32(void *ptr)
 	arch = (struct fat_arch*)(fat + 1);
 	while (++i < (int)narch)
 	{
-		if (reverse_endian(arch->cputype) == CPU_TYPE_X86_64)
+		if (reverse_endian(arch->cputype) == CPU_TYPE_X86_64 || 
+			reverse_endian(arch->cputype) == CPU_TYPE_X86)
 		{
 			nm(ptr + reverse_endian(arch->offset));
 			return ;
@@ -70,11 +71,12 @@ void		ft_find_fat_64(void *ptr)
 
 	i = -1;
 	fat = (struct fat_header*)ptr;
-	narch = OSSwapBigToHostInt(fat->nfat_arch);
+	narch = reverse_endian(fat->nfat_arch);
 	arch = (struct fat_arch_64*)(fat + 1);
 	while (++i < (int)narch)
 	{
-		if (reverse_endian(arch->cputype) == CPU_TYPE_X86_64)
+		if (reverse_endian(arch->cputype) == CPU_TYPE_X86_64 || 
+			reverse_endian(arch->cputype) == CPU_TYPE_X86)
 		{
 			nm(ptr + reverse_endian(arch->offset));
 			return ;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_lib.c                                           :+:      :+:    :+:   */
+/*   nm_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtranchi <jtranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 16:50:55 by jtranchi          #+#    #+#             */
-/*   Updated: 2017/07/31 12:09:25 by jtranchi         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:09:04 by jtranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ char **tab)
 	char				*stringtable;
 	struct nlist_64		*array;
 	t_lt				*lt;
+	t_lt				*tmp;
 
 	lt = NULL;
 	stringtable = (void*)ptr + sym->stroff;
@@ -91,8 +92,11 @@ char **tab)
 			ft_print_addr(lt->value, 1);
 		ft_print_letter(lt, tab);
 		ft_putendl(lt->str);
-		lt = lt->next;
+		tmp = lt->next;
+		free(lt);
+		lt = tmp;
 	}
+	free(tab);
 }
 
 void			print_output_32(struct symtab_command *sym, void *ptr,
@@ -102,6 +106,7 @@ char **tab)
 	char				*stringtable;
 	struct nlist		*array;
 	t_lt				*lt;
+	t_lt				*tmp;
 
 	lt = NULL;
 	stringtable = (void*)ptr + sym->stroff;
@@ -118,6 +123,9 @@ char **tab)
 			ft_print_addr(lt->value, 0);
 		ft_print_letter(lt, tab);
 		ft_putendl(lt->str);
-		lt = lt->next;
+		tmp = lt->next;
+		free(lt);
+		lt = tmp;
 	}
+	free(tab);
 }

@@ -57,7 +57,7 @@ void		find_fat_64(void *ptr)
 		if (reverse_endian(arch->cputype) == CPU_TYPE_X86_64 ||
 			reverse_endian(arch->cputype) == CPU_TYPE_X86)
 		{
-			otool(ptr + OSSwapBigToHostInt(arch->offset));
+			otool(ptr + reverse_endian(arch->offset));
 			return ;
 		}
 		arch = arch + 1;

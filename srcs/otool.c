@@ -26,7 +26,7 @@ void		handle_64(struct mach_header_64 *header)
 	{
 		if (ft_strcmp(segment->segname, SEG_TEXT) == 0)
 		{
-			print_output_64(segment, header, 0);
+			print_output_64(segment, header);
 			tmp = NULL;
 			break ;
 		}
@@ -36,7 +36,7 @@ void		handle_64(struct mach_header_64 *header)
 		segment->cmdsize);
 	}
 	if (tmp)
-		print_output_64(tmp, header, 1);
+		print_output_64(tmp, header);
 }
 
 void		handle_32(struct mach_header *header)
@@ -53,7 +53,7 @@ void		handle_32(struct mach_header *header)
 	{
 		if (ft_strcmp(segment->segname, SEG_TEXT) == 0)
 		{
-			print_output_32(segment, header, 0);
+			print_output_32(segment, header);
 			tmp = NULL;
 			break ;
 		}
@@ -63,7 +63,7 @@ void		handle_32(struct mach_header *header)
 		segment->cmdsize);
 	}
 	if (tmp)
-		print_output_32(tmp, header, 1);
+		print_output_32(tmp, header);
 }
 
 void		otool(void *ptr)

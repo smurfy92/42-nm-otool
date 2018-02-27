@@ -25,7 +25,7 @@ all: start
 	-@make -C libft nohd
 	@gcc -o ft_otool $(OT_SRC) $(FLAG) $(INC) $(LIB);
 	@echo "$(CY)[OTOOL] :$(CE) $(CG)Compiling otool ...$(CE)";
-	@gcc -g -o ft_nm $(NM_SRC) $(FLAG) $(INC)  $(LIB);
+	@gcc -o ft_nm $(NM_SRC) $(FLAG) $(INC)  $(LIB);
 	@echo "\033[K$(CY)[NM] :$(CE) $(CG)Compiling nm ...$(CE)";
 
 

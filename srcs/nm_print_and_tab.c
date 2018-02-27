@@ -12,7 +12,7 @@
 
 #include "../includes/nm.h"
 
-void		print_letter(t_lt *lt, char **tab)
+void			print_letter(t_lt *lt, char **tab)
 {
 	char			type;
 	char			*section_name;
@@ -37,6 +37,7 @@ void		print_letter(t_lt *lt, char **tab)
 	ft_putchar(' ');
 	ft_putchar(!(lt->type & N_EXT) ? ft_tolower(type) : type);
 	ft_putchar(' ');
+	ft_putendl(lt->str);
 }
 
 void			print_output_64(struct symtab_command *sym, void *ptr,
@@ -62,7 +63,6 @@ char **tab)
 		else
 			print_addr(lt->value, 1);
 		print_letter(lt, tab);
-		ft_putendl(lt->str);
 		tmp = lt->next;
 		free(lt);
 		lt = tmp;
@@ -93,7 +93,6 @@ char **tab)
 		else
 			print_addr(lt->value, 0);
 		print_letter(lt, tab);
-		ft_putendl(lt->str);
 		tmp = lt->next;
 		free(lt);
 		lt = tmp;
@@ -101,7 +100,7 @@ char **tab)
 	free(tab);
 }
 
-char		**get_tab_64(char **tabl, struct segment_command_64 *seg)
+char			**get_tab_64(char **tabl, struct segment_command_64 *seg)
 {
 	int					i;
 	int					y;
@@ -126,7 +125,7 @@ char		**get_tab_64(char **tabl, struct segment_command_64 *seg)
 	return (tab2);
 }
 
-char		**get_tab_32(char **tabl, struct segment_command *seg)
+char			**get_tab_32(char **tabl, struct segment_command *seg)
 {
 	int					i;
 	int					y;
@@ -146,7 +145,7 @@ char		**get_tab_32(char **tabl, struct segment_command *seg)
 	sec = (struct section*)(seg + 1);
 	y = -1;
 	while (++y < (int)seg->nsects)
-		(sec++) ? (tab2[i++] = sec->sectname) : 0;
+		(tab2[i++] = sec->sectname) ? (sec++) : 0;
 	free(tabl);
 	return (tab2);
 }

@@ -95,4 +95,3 @@ void			add_list_32(t_lt **lt, char *str, struct nlist array)
 	else
 		push_list(lt, tmp, new);
 }
-

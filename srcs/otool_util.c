@@ -71,7 +71,7 @@ void				print_addr(unsigned long long n, int boo)
 	len = -1;
 	if (boo)
 		while (++len + ft_strlen(str) < 16)
-			(len == 7) ? (ft_putchar('1')) : (ft_putchar('0'));
+			ft_putchar('0');
 	else
 		while (++len + ft_strlen(str) < 8)
 			ft_putchar('0');

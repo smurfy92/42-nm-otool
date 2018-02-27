@@ -13,7 +13,7 @@
 #include "../includes/otool.h"
 
 void				print_output_64_suite(char *header,
-struct section_64 *section, int boo, int boo2)
+struct section_64 *section, int boo)
 {
 	size_t				offset;
 	size_t				count;
@@ -22,8 +22,7 @@ struct section_64 *section, int boo, int boo2)
 	while (header + section->offset + offset <
 	header + section->offset + section->size)
 	{
-		(boo2) ? (print_addr(offset, boo)) :
-		print_addr(section->offset + offset, boo);
+		print_addr(section->addr + offset, boo);
 		count = -1;
 		ft_putstr("	");
 		while (++count < 16)
@@ -40,7 +39,7 @@ struct section_64 *section, int boo, int boo2)
 }
 
 void				print_output_32_suite(char *header,
-struct section *section, int boo, int boo2)
+struct section *section, int boo)
 {
 	size_t				offset;
 	size_t				count;
@@ -49,8 +48,7 @@ struct section *section, int boo, int boo2)
 	while (header + section->offset + offset <
 	header + section->offset + section->size)
 	{
-		(boo2) ? (print_addr(offset, boo)) :
-		print_addr(section->offset + offset, boo);
+		print_addr(section->addr + offset, boo);
 		count = -1;
 		ft_putstr("	");
 		while (++count < 16)
@@ -67,7 +65,7 @@ struct section *section, int boo, int boo2)
 }
 
 void				print_output_64(struct segment_command_64 *seg,
-struct mach_header_64 *header, int boo)
+struct mach_header_64 *header)
 {
 	struct section_64	*section;
 	size_t				count;
@@ -81,11 +79,11 @@ struct mach_header_64 *header, int boo)
 		section += 1;
 	}
 	ft_putendl("Contents of (__TEXT,__text) section");
-	print_output_64_suite((char *)header, section, 1, boo);
+	print_output_64_suite((char *)header, section, 1);
 }
 
 void				print_output_32(struct segment_command *seg,
-struct mach_header *header, int boo)
+struct mach_header *header)
 {
 	struct section		*section;
 	size_t				count;
@@ -99,5 +97,5 @@ struct mach_header *header, int boo)
 		section += 1;
 	}
 	ft_putendl("Contents of (__TEXT,__text) section");
-	print_output_32_suite((char *)header, section, 1, boo);
+	print_output_32_suite((char *)header, section, 0);
 }
